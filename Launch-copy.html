@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/Launch-copy.css" />
+		<link rel="stylesheet" href="css/mui.picker.css" />
+		<link rel="stylesheet" href="css/mui.poppicker.css" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<script type="text/javascript" src="js/dui.js"></script>
+		<script type="text/javascript" src="js/mui.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/mui.picker.js"></script>
+		<script type="text/javascript" src="js/mui.poppicker.js"></script>
+		<style type="text/css">
+			select {
+				width: 2rem !important;
+				padding: 0.12rem;
+				outline: 0;
+				border-radius: 8px;
+				color: #333;
+				border: 1px solid #eaeaea;
+				margin-bottom: 0 !important;
+			}
+			
+			input {}
+			
+			.main-box {
+				padding-right: 0.24rem;
+			}
+			
+			#addr {
+				width: 3.5rem;
+			}
+			
+			#ShopType {
+				width: 1.8rem;
+			}
+			
+			#ShopTypeTwo {
+				width: 1.8rem;
+			}
+			
+			#month {
+				width: 2rem;
+				border: 0;
+				outline: 0;
+				font-size: 0.26rem;
+				padding: 0 0 0 0.12rem !important;
+				margin-bottom: 0 !important;
+			}
+			
+			.itemBox {
+				padding: 0.24rem 0.24rem;
+				width: 100%;
+				background: #FFFFFF;
+				border-radius: 0.24rem;
+				border-bottom: 1px solid gainsboro;
+				margin-top: 0.2rem;
+			}
+			
+			.itemBox div {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			
+			.sureBtn {
+				width: 1rem;
+				height: 0.5rem;
+				line-height: 0.5rem;
+				color: #FFFFFF;
+				background: #D61A0A;
+				text-align: center;
+				padding: 0 0.2rem;
+				border-radius: 0.2rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="header-aside" onclick="mui.openWindow('guanggao.html')">
+					<img src="img/block-left.png" />
+				</div>
+				<div class="header-content">投放广告</div>
+				<div class="header-text"></div>
+			</div>
+			<div class="main">
+				<div class="main-box">
+					<div class="main-text">投放类型</div>
+					<div class="main-news">
+						<select name="" id="Adblock">
+							<option value="0">请选择</option>
+							<option value="1">首页广告</option>
+							<option value="2">分类广告</option>
+						</select>
+					</div>
+					<span></span>
+				</div>
+				<div class="main-box monthBox">
+					<div class="main-word">投放月份</div>
+					<div class="main-news">
+						<input type="number" id="month" readonly="readonly" placeholder="" />
+					</div>
+				</div>
+				<section id="isShow" style="display: none;">
+
+				</section>
+				<!--<div class="main-Photo">
+					<div class="main-text">请上传图片（250*250）</div>
+					<div class="main-banner">
+						<img class="up" src="img/Addto.png" />
+					</div>
+				</div>-->
+			</div>
+			<div class="bottom">
+				<div class="bottom-text">当前广告价格：￥<strong id="adPrice" style="color: red;"></strong></div>
+				<!--<div class="bottom-news" >确认投放</div>-->
+				<a href="#picture" class="bottom-news">确认投放</a>
+			</div>
+
+		</div>
+		<input type="hidden" class="ruleTypeId" />
+		<div id="picture" class="mui-popover mui-popover-action">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#" data-id='0'>余额支付</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#" data-id='1'>支付宝</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#" data-id='2'>微信</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#picture" data-id='-1'><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+
+		<div id="typeLayer" class="mui-popover mui-popover-action">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#" data-id='0'>余额支付</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#" data-id='1'>支付宝</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#" data-id='2'>微信</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#picture" data-id='-1'><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+
+		<script src="js/jquery-2.1.0.js"></script>
+		<script src="js/url.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var myPrice, RuleId
+
+				mui('body').on('tap', '.sureBtn', function() {
+					RuleId = $(this).data('id')
+					myPrice = $(this).data('pri')
+				})
+
+				mui('#picture').on('tap', 'li>a', function() {
+					console.log(11111)
+					var type = $(this).data('id')
+					var Id = $('.ruleTypeId').val();
+					var Price = $('#adPrice').text()
+					if(type == 0) {
+						pursePay(1, '/merchant/buyMerchantAdvertisement', '', Id, Price, '#picture')
+					} else if(type == 1) {
+						pursePay(1, '/merchant/payMerchantAdvertisement', 1, Id, Price, '#picture')
+					} else if(type == 2) {
+						pursePay(1, '/merchant/payMerchantAdvertisement', 2, Id, Price, '#picture')
+					}
+
+				});
+				//				<!--分类广告-->
+				mui('#typeLayer').on('tap', 'li>a', function() {
+					var type = $(this).data('id');
+					if(type == 0) {
+						pursePay(2, '/merchant/buyMerchantAdvertisement', '', RuleId, myPrice, '#typeLayer')
+					} else if(type == 1) {
+						pursePay(2, '/merchant/payMerchantAdvertisement', 1, RuleId, myPrice, '#typeLayer')
+					} else if(type == 2) {
+						pursePay(2, '/merchant/payMerchantAdvertisement', 2, RuleId, myPrice, '#typeLayer')
+					}
+
+				});
+				var channel
+				// 1. 获取支付通道
+				function plusReady() {
+					// 获取支付通道
+					plus.payment.getChannels(function(channels) {
+						that.channel = channels;
+					}, function(e) {
+						alert("获取支付通道失败：" + e.message);
+					});
+				}
+				if(window.plus) {
+					plusReady();
+				} else {
+					document.addEventListener('plusready', plusReady, false);
+				}
+				//				<!--支付-->
+				function pursePay(smAmType, url, state, smAdvertisementRuleId, smAmPrice, ele) {
+					var smMerchantId = localStorage.getItem('smMerchantId')
+					var smAmCreateName = localStorage.getItem('smMeCreateName')
+					var data = {
+						'smAmType': smAmType,
+						'smAdvertisementRuleId': smAdvertisementRuleId,
+						'smMerchantId': smMerchantId,
+						'state': state,
+						'smAmPrice': smAmPrice,
+						'smAmCreateName': smAmCreateName
+					}
+					if(state == '') {
+						delete data.state
+					}
+					$.ajax({
+						type: "post",
+						url: url_url + url,
+						async: true,
+						data: data,
+						success: function(res) {
+							mui(ele).popover('toggle')
+							if(res.status == 200) {
+								
+								if(state == 1) {
+//									支付宝支付
+									plus.payment.request(channel[0], res.data[0], function(result) {	
+										mui.toast('投放成功')
+									}, function(error) {
+										alert('支付失败')
+									});
+								} else if(state == 2) {
+//									微信支付
+									plus.payment.request(channel[1], res.data, function(result) {	
+										mui.toast('投放成功')
+									}, function(error) {
+										alert('支付失败')
+									});
+								}else{
+									mui.toast('投放成功')
+								}
+							} else {
+								mui.toast(res.msg)
+							}
+						},
+						error: function(err) {
+							console.log(err)
+						}
+					});
+				}
+
+				//显示 隐藏
+				$('#Adblock').on('change', function() {
+					var val = $(this).val();
+					if(val == 2) {
+						$('#isShow').show()
+					} else {
+						$('#isShow').hide()
+					}
+				})
+
+				$('#Adblock').on('change', function() {
+					if($(this).val() == 1) {
+						$('.monthBox').show()
+						$('.bottom').show()
+						$.ajax({
+							type: "post",
+							url: url_url + '/merchant/querysmAdvertisementRule',
+							async: true,
+							success: function(res) {
+								console.log(res)
+								$('#month').val(res.data[0].smArTime)
+								$('#adPrice').text(res.data[0].smArPrice)
+								$('.ruleTypeId').val(res.data[0].smAdvertisementRuleId)
+							},
+							error: function(err) {
+								console.log(err)
+							}
+						});
+					} else if($(this).val() == 2) {
+						$('#month').val('');
+						$('#adPrice').text(0)
+						$('.monthBox').hide()
+						$('.bottom').hide()
+						var _html = ''
+						$.ajax({
+							type: "post",
+							url: url_url + '/merchant/querysmAdvertisementClassify',
+							async: true,
+							success: function(res) {
+								console.log(res)
+								var obj = res.data;
+								for(i in obj) {
+									console.log(obj[i])
+									_html += `
+								    <div class="itemBox">
+										<div>
+											<p><span>地区: </span><span>${obj[i].smAaProvice + obj[i].smAaCity + obj[i].smAaArea}</span></p>
+											<p><span>月份: </span><span>${obj[i].smAcTime}</span></p>
+										</div>
+										<div>
+											<p><span>分类: </span><span>${obj[i].smStName}</span></p>
+											<p><span>价格: </span>￥<span style="color: red;">${obj[i].smAcPrice}</span></p>
+										</div>
+										<div>
+											<p><span>市场: </span><span>${obj[i].smAmName}</span></p>
+											<a href="#typeLayer" class="sureBtn" data-id=${obj[i].smAdvertisementClassifyId} data-pri=${obj[i].smAcPrice}>投放</a>
+										</div>
+					                 </div>
+								`;
+								}
+								$('#isShow').empty();
+								$('#isShow').append(_html)
+
+							},
+							error: function(err) {
+								console.log(err)
+							}
+						});
+					}
+				});
+				$('body').on('click', '.sureBtn', function() {
+					var smAdvertisementRuleId = $(this).data('id')
+					var smMerchantId = localStorage.getItem('smMerchantId')
+					var smAmCreateName = localStorage.getItem('smMeCreateName')
+					var smAmPrice = $(this).data('pri')
+					$.ajax({
+						type: "post",
+						url: url_url + '/merchant/buyMerchantAdvertisement',
+						async: true,
+						data: {
+							'smAmType': 2,
+							'smAdvertisementRuleId': smAdvertisementRuleId,
+							'smMerchantId': smMerchantId,
+							'smAmPrice': smAmPrice,
+							'smAmCreateName': smAmCreateName
+						},
+						success: function(res) {
+							if(res.status == 200) {
+								mui.toast('投放成功')
+							} else {
+								mui.toast(res.msg)
+							}
+
+						}
+
+					});
+				})
+
+				$('body').on('click', '.bottom-news', function() {
+
+				})
+
+			});
+
+			$('.bottom-news').click(function() {
+				console.log($('#Adblock').val())
+			})
+		</script>
+	</body>
+
+</html>

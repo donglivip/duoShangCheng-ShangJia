@@ -244,7 +244,7 @@ window.___E_mod(function (E, $) {
 		uploadTimeout: 10 * 1000,
 
 		// 测试地址（在测试地址，编辑器会主动输出一些console.log信息）
-		testHostname: 'localhost',
+		testHostname: 'http://39.107.70.18:8088',
 
 		// 上传图片时，如果浏览器不支持预览图片，则用以下图片代替
 		loadingImg: 'http://images2015.cnblogs.com/blog/138012/201512/138012-20151208194759027-506651939.gif',
@@ -267,7 +267,6 @@ window.___E_mod(function (E, $) {
 });
 // 上传图片
 window.___E_mod(function (E, $) {
-
 	var isAndroid = E.isAndroid;
 	var isUC = E.isUC;
 
@@ -1059,7 +1058,7 @@ window.___E_mod(function (E, $) {
 			            	var loadImg;
 			            	var $loadImg;
 
-			            	log('服务器端的返回数据为：' + resultSrc);
+			            	
 
 			            	// 返回数据错误
 			            	if (resultSrc.indexOf('error|') === 0) {
@@ -1077,12 +1076,13 @@ window.___E_mod(function (E, $) {
 
 			            		log('请确认以上图片是否有效，无效将无法显示在页面中');
 			            		log('准备下载该图片...');
-			            		
 			            		// 下载图片，下载完成后赋值到编辑器中
 			            		$('#' + prevImgInfoId).text('加载中...');
 			
 			            		loadImg = document.createElement('img');
-			            		loadImg.src = resultSrc;
+			            		
+			            		loadImg.src = url_url + JSON.parse(resultSrc).data[0];
+			            		console.log(loadImg.src)
 			            		loadImg.onload = function () {
 			            			log('下载完成，正式呈现在编辑区域');
 		
@@ -1095,7 +1095,7 @@ window.___E_mod(function (E, $) {
 			            			self.saveSourceCode();
 			            		};
 			            		loadImg.onerror = function () {
-			            			log('图片加载失败，请确定这个url是否能成功得到图片：' + resultSrc);
+			            			console.log('图片加载失败，请确定这个url是否能成功得到图片：' + loadImg.src);
 			            			
 			            			alert('图片加载失败');
 			            			$prevImgContainer.remove();

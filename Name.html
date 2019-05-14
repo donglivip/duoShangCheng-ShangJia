@@ -12,7 +12,7 @@
 	<body>
 		<div class="wrapper">
 			<div class="header">
-				<div class="header-aside" onclick="mui.openWindow('personal.html')">
+				<div class="header-aside mui-action-back" >
 					<img src="img/block-left.png"/>
 				</div>
 				<div class="header-content">更改店铺名称</div>
@@ -22,7 +22,6 @@
 				<input class="main-text" id="name" type="text" placeholder="请输入店铺名"/>
 			</div>
 			<div style="margin-top: 5px;"></div>
-			<a style="font-size: 0.24rem;margin: 0.3rem;color: #666;">店铺名称只能设置一次，不可以更改</a>
 			<div class="main-Submission">提交</div>
 		</div>
 		<script src="js/jquery-2.1.0.js"></script>
@@ -43,10 +42,15 @@
 			 			},
 			 			async:true,
 			 			success:function(res){
-			 				console.log(res);
-			 				mui.toast('提交成功');
-			 				localStorage.setItem('smMeShopName',shopName);
-			 				
+			 				if(res.status==200){
+			 					mui.toast('提交成功');
+				 				localStorage.setItem('smMeShopName',shopName);
+				 				var shop = plus.webview.getWebviewById("shop");
+								mui.fire(shop, 'shop', {});
+								var personal = plus.webview.getWebviewById("personal");
+								mui.fire(personal, 'shop', {});
+								mui.back()
+			 				}
 			 			},
 			 			error:function(err){
 			 				console.log(err);

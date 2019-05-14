@@ -83,8 +83,6 @@
 	<script src="js/url.js"></script>
 	<script type="text/javascript">
 		var abc = localStorage.getItem('existAdress');
-		console.log(abc);
-		
 		mui.plusReady(function() {
 			$('.saveRule').click(function() {
 				var smMerchantId = localStorage.getItem('smMerchantId');
@@ -102,11 +100,9 @@
 				var abc = localStorage.getItem('existAdress');
 				var isexist = abc.split(',') //缓存  省份
 				var newadd = smEfAddressPrv.split(',') //新增省份
-				console.log(newadd);
-				console.log(isexist)
 
 				var temp = []; //临时数组1 
-				
+
 				var temparray = []; //临时数组2 
 
 				for(var i = 0; i < isexist.length; i++) {
@@ -116,11 +112,10 @@
 				for(var i = 0; i < newadd.length; i++) {
 					if(temp[newadd[i]]) {
 						temparray.push(newadd[i]); //巧妙地方：同时把数组A的值当成临时数组1的键并判断是否为真，如果不为真说明没重复，就合并到一个新数组里，这样就可以得到一个全新并无重复的数组 
-                        alert(temparray.join(",") + ' 已经存在')
-                        return false;
+						alert(temparray.join(",") + ' 已经存在')
+						return false;
 					};
 				};
-				
 
 				if(smEfAddressPrv == '' || smEfDefaultNum == '' || smEfDefaultPrice == '' || smEfAddNum == "" || smEfAddPrice == '') {
 					alert('内容填写不完整');
@@ -129,7 +124,6 @@
 
 				//判断 是修改或新增  或者添加
 				if(smExpressTemplateId) {
-					alert('走添加');
 					$.ajax({
 						type: "post",
 						url: url_url + "/merchant/addExpressFee",
@@ -145,9 +139,6 @@
 							smEfAddPrice: smEfAddPrice
 						},
 						success: function(res) {
-							plus.nativeUI.alert(JSON.stringify(res))
-							console.log('发送添加接口返回状态' + res.status);
-							console.log('发送添加接口返回状态' + res.data);
 							mui.back()
 						},
 						error: function(err) {
@@ -155,14 +146,6 @@
 						}
 					});
 				} else if(smExpressFeeId) {
-					alert('走修改');
-					console.log(smExpressFeeId);
-					console.log(smMerchantId);
-					console.log(address);
-					console.log(smEfDefaultNum);
-					console.log(smEfDefaultPrice);
-					console.log(smEfAddNum);
-					console.log(smEfAddPrice);
 					$.ajax({
 						type: "post",
 						url: url_url + "/merchant/updateExpressFee",
@@ -177,8 +160,7 @@
 							smEfAddPrice: smEfAddPrice
 						},
 						success: function(res) {
-							plus.nativeUI.alert(JSON.stringify(res))
-														mui.back();
+							mui.back();
 						},
 						error: function(err) {
 
@@ -186,7 +168,6 @@
 					});
 
 				} else {
-					alert('走新增');
 					$.ajax({
 						type: "post",
 						url: url_url + "/merchant/insertExpress",
@@ -205,21 +186,7 @@
 							smEfAddPrice: smEfAddPrice
 						},
 						success: function(res) {
-							alert(JSON.stringify( {
-							smMerchantId: smMerchantId,
-							smEtName: smEtName,
-							smEtAddress: smEtAddress,
-							smEtTime: smEtTime,
-							smEtIsStyle: 1,
-							smEfIsAppoint: 1,
-							address: smEfAddressPrv,
-							smEfDefaultNum: smEfDefaultNum,
-							smEfDefaultPrice: smEfDefaultPrice,
-							smEfAddNum: smEfAddNum,
-							smEfAddPrice: smEfAddPrice
-						}));
-							alert(JSON.stringify(res));
-														mui.back();
+							mui.back();
 						},
 						error: function(err) {
 

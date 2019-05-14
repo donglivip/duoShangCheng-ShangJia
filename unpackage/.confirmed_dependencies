@@ -85,7 +85,8 @@
       "freight.html",
       "Vip.html",
       "MemberAudit.html",
-      "shoping.html"
+      "shoping.html",
+      "guanggao.html"
     ]
   },
   "personal.html": {
@@ -213,7 +214,8 @@
       "shop.html",
       "Adding-bank.html",
       "Pay.html",
-      "xialashuax-pullrefresh.html"
+      "xialashuax-pullrefresh.html",
+      "shangpinshangxian.html"
     ]
   },
   "about.html": {
@@ -312,7 +314,8 @@
       "zhuce2.html",
       "home_page.html",
       "PhoneLogin.html",
-      "business.html"
+      "business.html",
+      "Authentication.html"
     ]
   },
   "Adding-bank.html": {
@@ -358,10 +361,13 @@
       "img/htb\rArrow right02.png",
       "img/Addto.png",
       "css/Launch-copy.css",
-      "img/htb\rArrow right02.png"
+      "img/htb\rArrow right02.png",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css"
     ],
     "refer": [
-      "Advertisement.html"
+      "Advertisement.html",
+      "guanggao.html"
     ]
   },
   "home_page.html": {
@@ -428,6 +434,12 @@
     ],
     "refer": [
       "freight.html"
+    ]
+  },
+  "guanggao.html": {
+    "refer": [
+      "AdvertiseDetail.html",
+      "Launch-copy.html"
     ]
   }
 }

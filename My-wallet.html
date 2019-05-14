@@ -26,7 +26,10 @@
 				<div class="main-content">
 					<div class="main-top">
 						<div class="main-text">账户余额</div>
-						<div class="main-news">￥<span id="yajin_money"></span>（元）<span class="main-pay" id="Pay">充值</span></div>
+						<div class="main-news">
+							￥<span id="yajin_money"></span>
+							<span class="main-pay" id="Pay">充值</span>
+						</div>
 					</div>
 					<div class="main-bottom">
 						<div class="main-left">
@@ -54,6 +57,9 @@
 				</div>-->
 				<div class="main-box forward">
 					<div class="main-word">余额提现</div>
+				</div>
+				<div class="main-box shangxian">
+					<div class="main-word" id="alipay">购买商品上限</div>
 				</div>
 			</div>
 			<div id="zprice" class="mui-popover mui-popover-action">
@@ -102,7 +108,7 @@
 				function plusReady() {
 					// 获取支付通道
 					plus.payment.getChannels(function(channels) {
-						that.channel = channels;
+						channel = channels;
 					}, function(e) {
 						alert("获取支付通道失败：" + e.message);
 					});
@@ -130,6 +136,8 @@
 									mui.toast('缴纳成功')
 									localStorage.setItem('smMeMortgagePrice',$('#zumoney').html())
 									location.reload()
+								}else{
+									mui.toast(res.msg)
 								}
 							},
 							error: function(err) {
@@ -172,7 +180,7 @@
 						})
 					}
 				})
-				// 缴纳租金
+				// 缴纳保障金
 				$('#typeLayer .myindex').click(function() {
 					var index = $(this).index()
 					if(index == 0) {
@@ -190,6 +198,8 @@
 									mui.toast('缴纳成功')
 									localStorage.setItem('smMeEnsurePrice',$('#bzmoney').html())
 									location.reload()
+								}else{
+									mui.toast(res.msg)
 								}
 							},
 							error: function(err) {
@@ -232,6 +242,11 @@
 						})
 					}
 				})
+				$('.shangxian').click(function(){
+					mui.openWindow({
+						url:'shangpinshangxian.html'
+					})
+				})
 				$('#jiechu').click(function() {
 					//					解除保证金
 					$.ajax({
@@ -243,6 +258,7 @@
 							smMerchantId: localStorage.getItem('smMerchantId')
 						},
 						success: function(res) {
+							localStorage.setItem('smMeEnsurePrice',-1)
 							location.reload()
 						},
 						error: function(err) {
@@ -319,7 +335,6 @@
 					}
 				});
 			});
-
 			//明细
 			$("#mingxi").click(function() {
 				dui.jump("wallet.html", "wallet");
@@ -340,7 +355,5 @@
 				dui.jump("Put-forward.html", "forward");
 			})
 		</script>
-
 	</body>
-
 </html>

@@ -34,28 +34,6 @@
 					</div>
 				</div>
 			</div>
-			<!--<div class="main">-->
-			<!--<div class="main-container">
-					<div class="main-box">
-						<div class="main-number" ><span class="fang" id="Visitors_today">234</span></div>
-						<div class="main-Visitor">今日访客</div>
-					</div>
-					<div class="main-box">
-						<div class="main-number">¥<span class="fang" id="Visitors_to">234</span></div>
-						<div class="main-Visitor">今日成交额</div>
-					</div>
-				
-				</div>
-				<div class="main-container">
-					<div class="main-box">
-						<div class="main-number"><span class="fang">234</span></div>
-						<div class="main-Visitor">昨日访客</div>
-					</div>
-					<div class="main-box">
-						<div class="main-number">¥<span class="fang">234</span></div>
-						<div class="main-Visitor">昨日成交额</div>
-					</div>-->
-			<!--</div>-->
 			<div class="main-Administration">
 				<div class="main-status">
 					<img src="img/wallet.png" />
@@ -63,12 +41,11 @@
 				</div>
 
 				<div class="main-status">
-					<!--<img src="img/commodity.png" />-->
 					<i class="iconfont icon-mingpian"></i>
 					<div class="main-my">会员管理</div>
 				</div>
 				<div class="main-status">
-					<img src="./img/guangg.png"/>
+					<img src="./img/guangg.png" />
 					<div class="main-my">广告管理</div>
 				</div>
 			</div>
@@ -96,14 +73,14 @@
 					<i class="iconfont icon-kuaidihuoyun" style="margin-left: 0.25rem;margin-top: 0;"></i>
 					<div class="main-classification">运费设置</div>
 				</div>
-				<div class="main-tips">
+				<!--<div class="main-tips">
 					<img src="img/about.png" />
 					<div class="main-classification">关于我们</div>
-				</div>
-				<div class="main-tips">
+				</div>-->
+				<a class="main-tips" href='tel:13218573474'>
 					<img src="img/Customer.png" />
 					<div class="main-classification">官方客服</div>
-				</div>
+				</a>
 				<div class="main-tips">
 					<img src="img/Setup.png" />
 					<div class="main-classification">分类管理</div>
@@ -116,21 +93,11 @@
 		<script>
 			var shopLogo = localStorage.getItem('smMeShopImg'); //店铺图片
 
-//			$('#img_img_id').attr('src',shopLogo);
-            $('.header-text').text(localStorage.getItem('smMeShopName'))
+						$('#img_img_id').attr('src',shopLogo);
+			$('.header-text').text(localStorage.getItem('smMeShopName'))
 
 			var main_status = document.getElementsByClassName("main-status");
 			var main_tips = document.getElementsByClassName("main-tips");
-
-			//认证
-			//				certification.addEventListener("tap",function(){
-			//					dui.jump("business.html","business");
-			//				})
-
-			//退出登录
-			//				$("#certifi").click(function(){
-			//					dui.jump("Login.html","Login");
-			//				});	
 
 			//我的钱包
 			main_status[0].addEventListener("tap", function() {
@@ -176,13 +143,15 @@
 				dui.jump("about.html", "about");
 			})
 
-			//官方客户
-			main_tips[3].addEventListener("tap", function() {
-				dui.jump("about.html", "about");
-			})
 			//分类管理
 			main_tips[4].addEventListener("tap", function() {
 				dui.jump("addType.html", "addType");
+			})
+			mui.plusReady(function() {
+				document.addEventListener('shop', function() {
+					var shopLogo = localStorage.getItem('smMeShopImg'); //店铺图片
+					$('.header-text').text(localStorage.getItem('smMeShopName'))
+				})
 			})
 		</script>
 	</body>

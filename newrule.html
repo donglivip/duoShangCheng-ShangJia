@@ -375,9 +375,8 @@
 
 						},
 						success: function(res) {
-							console.log(JSON.stringify(res));
 							if(res.status == 200) {
-								location.reload();
+								mui.back();
 							} else {
 								console.log(JSON.stringify(res.msg))
 								mui.toast(res.msg)
@@ -388,8 +387,6 @@
 						}
 					});
 				} else {
-					console.log(2222)
-					console.log(smMerchantId)
 					$.ajax({
 						type: "post",
 						url: url_url + "/merchant/insertExpress",
@@ -402,9 +399,7 @@
 							smEtIsStyle: 2
 						},
 						success: function(res) {
-							console.log(JSON.stringify(res));
-							location.reload();
-							//							mui.back();
+							mui.back();
 						},
 						error: function(err) {
 

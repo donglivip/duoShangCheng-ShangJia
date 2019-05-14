@@ -99,8 +99,11 @@
 						state:1
 					},
 					success: function(res) {
-						wallet = res.data;
-						
+						if(res.status==200){
+							mui.toast('提现成功')
+						}else{
+							alert(res.msg)
+						}
 					},
 					error: function(err) {
 						console.log(err);

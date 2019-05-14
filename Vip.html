@@ -14,7 +14,7 @@
 	<body>
 		<div class="header">
 			<div class="header-top">
-				<div class="header-aside" onclick="mui.openWindow('shop.html')">
+				<div class="header-aside mui-action-back" >
 					<img src="img/block-left.png" />
 				</div>
 				<div id="main">
@@ -65,7 +65,7 @@
 											'smMerchantId': smMerchantId
 										},
 										success: function(res) {
-											
+											location.reload()
 										},
 										error: function(err) {
 											console.log(err);

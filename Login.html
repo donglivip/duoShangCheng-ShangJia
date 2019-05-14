@@ -20,7 +20,7 @@
 					<input class="main-news" type="number" id="Account" placeholder="请输入账号" />
 				</div>
 				<div class="main-Password">
-					<input type="password" class="main-word" id="pass" placeholder="请输入密码"/>
+					<input type="password" class="main-word" id="pass" placeholder="请输入密码" />
 				</div>
 				<div class="main-signin" id="main-signin">登录</div>
 				<div class="main-bottom">
@@ -36,7 +36,7 @@
 		<script type="text/javascript" src="js/dui.js"></script>
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script src="js/url.js"></script>
-		<script type="text/javascript" src="js/mui.js"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			var mainphone = document.getElementsByClassName("main-phone");
 
@@ -91,9 +91,9 @@
 							// 跳到认证页面
 							if(login.smShopTypeId == -1) {
 								mui.toast('请先完成认证！')
-								setTimeout(function() {
-									mui.openWindow('Authentication.html', 'Authentication')
-								}, 1000)
+								mui.openWindow({
+									url:'Authentication.html'
+								})
 							}
 							localStorage.setItem("storeinfoid", 1);
 							localStorage.setItem("smMerchantId", login.smMerchantId);
@@ -117,14 +117,9 @@
 							localStorage.setItem("smMeUpdateNameString", login.smMeUpdateNameString);
 							localStorage.setItem("smMeEnsurePrice", login.smMeEnsurePrice);
 							localStorage.setItem("smMeMortgagePrice", login.smMeMortgagePrice);
-														mui.plusReady(function() {
-															var inde = plus.webview.getLaunchWebview();
-															var shop = plus.webview.getWebviewById("shop");
-															mui.fire(inde, 'gohome', {});
-															mui.fire(shop, 'dianpu', {});
-															inde.show('pop-in', 300);
-															mui.toast("登录成功！")
-														})
+							mui.plusReady(function() {
+								plus.runtime.restart();
+							})
 						} else {
 							alert(data.msg)
 						}

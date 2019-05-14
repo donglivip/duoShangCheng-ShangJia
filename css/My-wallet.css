@@ -50,6 +50,11 @@ html,body,.wrapper{width: 100%;height: 100%;}
 	font-size:.48rem ;
     color: #333333 ;
     padding-top:.28rem ;
+    display: flex;
+    align-items: flex-end;
+}
+#yajin_money{
+	margin-right: .2rem;
 }
 .main-bottom{
 	display: flex;

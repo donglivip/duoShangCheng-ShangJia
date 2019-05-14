@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -13,26 +14,28 @@
 		<link rel="stylesheet" href="css/como.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 	</head>
+
 	<body>
-		<header class="mui-bar mui-bar-nav home" style="top: 0;-webkit-box-shadow:none;">
-			<a class="mui-action-back mui-pull-left"></a>
-			<h1 class="mui-title" style="color: #FFFFFF;">订单管理</h1>
-		</header>
-		<div class="mui-content"></div>
-		<div class="header">
-			<div>
-				<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted ">
-					<a class="mui-control-item mui-active" href="#item0" id="wait">待接单</a>
-					<a class="mui-control-item" href="#item1" id="unpaid">待支付</a>
-					<a class="mui-control-item" href="#item2" id="unshipped">待发货</a>
-					<a class="mui-control-item" href="#item3" id="norefund">待退款</a>
-					<a class="mui-control-item" href="#item4" id="shipped">已发货</a>
-					<a class="mui-control-item" href="#item5" id="signed">已签收</a>
+		<div class="wrapper">
+			<header class="mui-bar mui-bar-nav home" style="top: 0;-webkit-box-shadow:none;">
+				<a class="mui-action-back mui-pull-left"></a>
+				<h1 class="mui-title" style="color: #FFFFFF;">订单管理</h1>
+			</header>
+			<div class="mui-content" style="padding-top: 38px;"></div>
+			<div class="header">
+				<div>
+					<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted ">
+						<a class="mui-control-item mui-active" href="#item0" id="wait">待接单</a>
+						<a class="mui-control-item" href="#item1" id="unpaid">待支付</a>
+						<a class="mui-control-item" href="#item2" id="unshipped">待发货</a>
+						<a class="mui-control-item" href="#item3" id="norefund">待退款</a>
+						<a class="mui-control-item" href="#item4" id="shipped">已发货</a>
+						<a class="mui-control-item" href="#item5" id="signed">已签收</a>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="wrapper">
-			<div class="main mui-content">
+
+			<div class="main">
 				<div id="item0" class="mui-control-content mui-active">
 					<div id="scroll-T0" class="mui-scroll-wrapper">
 						<div class="mui-scroll" id="waitList">
@@ -85,7 +88,7 @@
 		<script type="text/javascript" src="js/loading.js"></script>
 		<script type="text/javascript">
 			var smUserId = localStorage.getItem('smMerchantId');
-            
+
 			$.ajax({
 				type: "post",
 				url: url_url + "/merchant/queryWaitingList",
@@ -94,18 +97,17 @@
 					smMerchantId: smUserId
 				},
 				success: function(res) {
-					console.log(res);
 					var _waitList = '';
 					if(res.status == 200) {
 						for(var i = 0; i < res.data.length; i++) {
-							_waitList +=`<div class="mui-table-view">
+							_waitList += `<div class="mui-table-view">
 								<div class="main-tab">
 									<div class="main-text">订单号：${res.data[i].smOrderId}</div>
 									<div class="main-time">${res.data[i].smOrCreateTimeString}</div>
 								</div>
 								<div class="main-Photo" data-id="${res.data[i].smOrderId}">
 									<div class="main-left">
-										<img src="${url_url + res.data[i].smMeShopImg}" />
+										<img src="${res.data[i].smMeShopImg}" />
 									</div>
 									<div class="main-right">
 										<div class="main-upper">
@@ -137,7 +139,7 @@
 			//  取消订单
 			$('body').on('click', '.cancelItemBtn', function() {
 				var smOrderId = $(this).data('id')
-				
+
 				$.ajax({
 					type: "post",
 					url: url_url + "/merchant/merchantCancellationOfOrders",
@@ -146,13 +148,13 @@
 						smOrderId: smOrderId
 					},
 					success: function(res) {
-						if(res.status == 200){
+						if(res.status == 200) {
 							location.reload()
 						}
-						
+
 					},
 					error: function(err) {
-						
+
 					}
 				});
 			});
@@ -168,21 +170,21 @@
 						smOrderId: smOrderId
 					},
 					success: function(res) {
-						if(res.status == 200){
-							console.log(res)
-						}else{
+						if(res.status == 200) {
+							plus.nativeUI.toast('接单成功')
+							location.reload()
+						} else {
 							console.log(res)
 						}
-						
+
 					},
 					error: function(err) {
-                      
+
 					}
 				});
 			})
 
 			$(function() {
-				$('.mui-control-content').css('height', $('.main').css('height'));
 
 				//				document.getElementById('wait').addEventListener('tap', function() {
 				//					$('#waitList').empty();
@@ -247,7 +249,6 @@
 						removeLoading('test');
 					},
 					success: function(res) {
-						console.log(JSON.stringify(res))
 						if(res.status == 200) {
 							var _orderHtml = '';
 							var _Xbtn = '';
@@ -309,12 +310,12 @@
 							$(ele).append(_orderHtml);
 
 						} else {
-							alert(res.msg);
+							
 						}
 
 					},
 					error: function(err) {
-						alert('网络错误！');
+						
 					}
 
 				});
@@ -354,7 +355,7 @@
 			});
 
 			// 完成交易
-			mui("body").on('tap','#signedBtn', function(event) {
+			mui("body").on('tap', '#signedBtn', function(event) {
 				let _this = this;
 				let smOrUpdateName = localStorage.getItem('smOrUpdateName');
 				var signed_Id = this.getAttribute('data-id');

@@ -13,7 +13,7 @@
 	<body>
 		<div class="wrapper">
 			<div class="header-box">
-				<div class="header-aside" onclick="mui.openWindow('shop.html')">
+				<div class="header-aside mui-action-back" >
 					<img src="img/block-left.png" />
 				</div>
 				<div class="header-content">个人信息</div>
@@ -50,6 +50,16 @@
     			localStorage.clear()
     			mui.openWindow('login.html','login')
     		})
+    		mui.plusReady(function () {
+			    addEventListener('shop',function(){
+					$('.name').text(localStorage.getItem('smMeShopName'))
+    		$('#avatar').attr('src',localStorage.getItem('smMeShopImg'))
+    		$('.bottom-text').click(function(){
+    			localStorage.clear()
+    			mui.openWindow('login.html','login')
+    		})
+				})
+			})
     	});
     </script>
 	</body>

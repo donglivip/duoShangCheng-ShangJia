@@ -14,7 +14,10 @@
 				margin: 0;
 				background: #D61A0A;
 				color: #fff;
+				height: calc(100% - 44px);
+				overflow-y: scroll;
 			}
+			.mui-content{height: calc(100%);}
 			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
 				border-bottom: 0;
 				font-size: 0.28rem;
@@ -137,7 +140,7 @@
 									<div class="main-txt">
 										<p class="content-name">${member[i].smMerchantName}</p>
 										<p class="content-time">申请时间：${member[i].smAmCreateTimeString}</p>
-										<p class="content-time">申请qqa：${member[i].smAmQq}</p>
+										<p class="content-time">申请QQ：${member[i].smAmQq}</p>
 									</div>
 								</div>` + footBtn;
 							}

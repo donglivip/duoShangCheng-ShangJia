@@ -109,7 +109,7 @@
 								});
 							} else {
 								plus.payment.request(that.channel[1], res, function(result) {
-									plus.nativeUI.toast('充值失败')
+									plus.nativeUI.toast('充值成功')
 								}, function(error) {
 									plus.nativeUI.alert("支付失败：" + error.code);
 								});

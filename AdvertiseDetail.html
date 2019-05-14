@@ -15,7 +15,7 @@
 	<body>
 		<div class="wrapper">
 			<div class="header">
-				<div class="header-aside" onclick="mui.openWindow('Advertisement.html')">
+				<div class="header-aside mui-action-back">
 					<img src="img/block-left.png" />
 				</div>
 				<div class="header-content">查询商户广告</div>
@@ -62,8 +62,8 @@
 		<script type="text/javascript">
 			mui.plusReady(function() {
 				var smAdvertisementMiddleId = plus.webview.currentWebview().MiddleId;
+				var type = plus.webview.currentWebview().type;
 				var smMerchantId = localStorage.getItem('smMerchantId');
-				var type = 1;
 				
 				$.ajax({
 					type: "post",
@@ -75,9 +75,8 @@
 						'smAdvertisementMiddleId':smAdvertisementMiddleId
 					},
 					success: function(res) {
-						console.log(JSON.stringify(res));
+						console.log(JSON.stringify(res))
 						let myAdver = res.data[0];
-						console.log(myAdver);
 						$('.Stime').text(myAdver.smAmCreateTime);
 						$('.Etime').text(myAdver.smAmTime);
 						$('.advAddress').text(myAdver.smAddress);

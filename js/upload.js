@@ -93,11 +93,7 @@
 						},
 						success: function(res) {
 							if(res.status == 200) {
-//								thats.msdHeadImg = res.data
-//								thats.msdHeadImgurl = res.data
-								console.log(res.data);
 								$(thats).attr('src',url_url + res.data);
-								
 							} else {
 								alert(res.msg)
 							}

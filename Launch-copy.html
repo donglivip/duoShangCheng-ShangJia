@@ -176,7 +176,6 @@
 				})
 
 				mui('#picture').on('tap', 'li>a', function() {
-					console.log(11111)
 					var type = $(this).data('id')
 					var Id = $('.ruleTypeId').val();
 					var Price = $('#adPrice').text()
@@ -206,7 +205,7 @@
 				function plusReady() {
 					// 获取支付通道
 					plus.payment.getChannels(function(channels) {
-						that.channel = channels;
+						channel = channels;
 					}, function(e) {
 						alert("获取支付通道失败：" + e.message);
 					});
@@ -236,29 +235,29 @@
 						url: url_url + url,
 						async: true,
 						data: data,
+						dataType: 'json',
 						success: function(res) {
-							mui(ele).popover('toggle')
-							if(res.status == 200) {
-								
-								if(state == 1) {
-//									支付宝支付
-									plus.payment.request(channel[0], res.data[0], function(result) {	
-										mui.toast('投放成功')
-									}, function(error) {
-										alert('支付失败')
-									});
-								} else if(state == 2) {
-//									微信支付
-									plus.payment.request(channel[1], res.data, function(result) {	
-										mui.toast('投放成功')
-									}, function(error) {
-										alert('支付失败')
-									});
-								}else{
+							if(state == 1) {
+								alert('zhifubao')
+								//									支付宝支付
+								plus.payment.request(channel[0], res.data[0], function(result) {
 									mui.toast('投放成功')
-								}
+									window.reload()
+								}, function(error) {
+									alert('支付失败')
+								});
+							} else if(state == 2) {
+								console.log(JSON.stringify(res))
+								//									微信支付
+								plus.payment.request(channel[1], res, function(result) {
+									mui.toast('投放成功')
+									window.reload()
+								}, function(error) {
+									alert('支付失败'+JSON.stringify(error))
+								});
 							} else {
-								mui.toast(res.msg)
+								mui.toast('投放成功')
+								window.reload()
 							}
 						},
 						error: function(err) {
@@ -286,7 +285,6 @@
 							url: url_url + '/merchant/querysmAdvertisementRule',
 							async: true,
 							success: function(res) {
-								console.log(res)
 								$('#month').val(res.data[0].smArTime)
 								$('#adPrice').text(res.data[0].smArPrice)
 								$('.ruleTypeId').val(res.data[0].smAdvertisementRuleId)

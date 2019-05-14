@@ -10,105 +10,28 @@
 		<script type="text/javascript" src="js/dui.js"></script>
 		<script type="text/javascript" src="js/mui.js"></script>
 	</head>
+	<style type="text/css">
+		.kefy{
+			position: fixed;width: 100%;height: 100%;background: rgba(0,0,0,.5);display: flex;align-items: center;justify-content: center;top: 0;left: 0;
+		}
+		.kefy iframe{background: #FFFFFF;border-radius: 5px;}
+		.kefy img{position: absolute;top: 6%;right: 6%;height: .5rem;}
+	</style>
 	<body>
 		<div class="wrapper">
 			<div class="header">
 				<div class="header-aside">
-					<div class="header-box">
-						<img src="img/485263.jpg" id="shopLogo"/>
-						<div class="header-text">在线</div>
-						<i class="iconfont icon-dian state_dian"></i>
-					</div>
+					
 				</div>
 				<div class="header-content">消息</div>
 				<div class="header-aside"></div>
 			</div>
 			<div class="main">
-				<div class="main-state" style="display: none;">
-					<div class="main-block online">
-						<div class="main-circular"></div>
-						<div class="main-word">在线 </div>
-					</div>
-					<div class="main-block offline">
-						<div class="main-round"></div>
-						<div class="main-word">离线 </div>
-					</div>
-				</div>
-				<div class="main-container">
-					<div class="main-box expressBox" onclick="MyOpen('logistics.html','logistics','1')">
-						<div class="main-left">
-							<img src="img/Truck.png" />
-						</div>
-						<div class="main-right">
-							<div class="right-top">
-								<div class="main-text">物流状态</div>
-								<div class="main-time expressTips_Date"></div>
-							</div>
-							<div class="right-bottom">
-								<div class="main-sgin expressTips"></div>
-							</div>
-						</div>
-					</div>
-					<div class="main-box systemBox" onclick="MyOpen('Notice.html','Notice','1')">
-						<div class="main-left blue">
-							<img src="img/horn.png" />
-						</div>
-						<div class="main-right">
-							<div class="right-top">
-								<div class="main-text">公告</div>
-								<div class="main-time systemTips_Date"></div>
-							</div>
-							<div class="right-bottom">
-								<div class="main-sgin systemTips"></div>
-							</div>
-						</div>
-					</div>
-					<div class="main-box personalBox" onclick="MyOpen('Notice.html','Notice','2')">
-						<div class="main-left blue">
-							<i class="iconfont icon-xiaoxi"></i>
-						</div>
-						<div class="main-right" onclick="">
-							<div class="right-top">
-								<!--<i class="iconfont icon-dian personalTips_icon"></i>-->
-								<div class="main-text">个人通知 </div>
-								<div class="main-time personalTips_Date"></div>
-							</div>
-							<div class="right-bottom">
-								<div class="main-sgin personalTips"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="main-container">
-					<div class="main-box">
-						<div class="main-portrait">
-							<img src="img/3 (1).jpg" />
-						</div>
-						<div class="main-right">
-							<div class="right-top">
-								<div class="main-text">XXXX </div>
-								<div class="main-time">15:30 </div>
-							</div>
-							<div class="right-bottom">
-								<div class="main-sgin">XXXXXXXXXXXXXXXXXXXXXXX</div>
-							</div>
-						</div>
-					</div>
-					<div class="main-box">
-						<div class="main-portrait">
-							<img src="img/4 (1).jpg" />
-						</div>
-						<div class="main-right">
-							<div class="right-top">
-								<div class="main-text">XXXXXXXX </div>
-								<div class="main-time">15:30 </div>
-							</div>
-							<div class="right-bottom">
-								<div class="main-sgin">XXXXXXXXXXXXXXXXXXXXXXX</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="main-container main-container02"></div>
+			</div>
+			<div class="kefy" style="display: none;">
+				<img src="img/Group 27.png" id="close"/>
+				<iframe src="" width="10%" height="10%" frameborder="0"></iframe>
 			</div>
 		</div>
 
@@ -136,7 +59,6 @@
 			
 			//页面跳转 传参
 			function MyOpen(url, id, typeId) {
-
 				mui.openWindow({
 					url: url,
 					id: id,
@@ -153,71 +75,55 @@
 			$(function() {
 				var smUserId = localStorage.getItem('smMerchantId');
                 var shopLogo = localStorage.getItem('smMeShopImg'); //店铺图片
-                
-//              $('#shopLogo').attr('src',shopLogo);
-                
-				//            离线 在线状态切换
-//				mui('body').on('tap', '.header-box', function() {
-//					$('.main-state').toggle();
-//				});
-
-//				mui('body').on('tap', '.online', function() {
-//					$('.state_dian').css('color', '#47DB29');
-//					$('.header-text').text("在线");
-//					$('.main-state').hide();
-//				});
-//
-//				mui('body').on('tap', '.offline', function() {
-//					$('.state_dian').css('color', '#a2a2a2');
-//					$('.header-text').text("离线");
-//					$('.main-state').hide();
-//				});
 //				查询消息
-				$.ajax({
+				setInterval(function(){
+					$.ajax({
 					type: "POST",
-					url: url_url + "/merchant/queryMessageShow",
+					url: url_url + "/house/findMessage",
 					dataType: 'json',
 					async: true,
 					data: {
-						'smUserId': smUserId
+						'id': smUserId
 					},
 					success: function(res) {
 						if(res.status == 200) {
-							console.log(res);
-							for(var i = 0; i < res.data.length; i++) {
-								if(res.data[i].smMessageId == 1) {
-									$('.systemTips').text(res.data[i].smMdContent);
-									$('.systemTips_Date').text(res.data[i].smMdCreateTimeString)
-								} else if(res.data[i].smMessageId == 2) {
-									if(res.data[i].smMdIsRead == 1) {
-										$('.personalTips_icon').hide();
-									} else {
-										$('.personalTips_icon').show();
-									}
-									$('.personalTips').text(res.data[i].smMdContent);
-									$('.personalTips_Date').text(res.data[i].smMdCreateTimeString)
-								} else if(res.data[i].smMessageId == 3) {
-									if(res.data[i].smMdIsRead == 1) {
-										$('.expressTips_icon').hide();
-									} else {
-										$('.expressTips_icon').show();
-									}
-									$('.expressTips').text(res.data[i].smMdContent);
-									$('.expressTips_Date').text(res.data[i].smMdCreateTimeString)
-								}
+							$('.main-container02').html('')
+							for(var i in res.data) {
+								$('.main-container02').append(`
+									<div class="main-box" id='${res.data[i].smMdContent}'>
+										<div class="main-right">
+											<div class="right-top">
+												<div class="main-text">新的聊天</div>
+												<div class="main-time">${res.data[i].smMdCreateTimeString} </div>
+											</div>
+											<div class="right-bottom">
+												<div class="main-sgin">有新用户咨询商品啦,点击查看!</div>
+											</div>
+										</div>	
+									</div>
+								`)
 							}
 
 						} else {
-							alert('失败！')
+							alert(res.msg)
 						}
 
 					},
 					error: function(err) {
-						alert(err)
+						
 					}
 
 				});
-
+				},3000)
+				$('.main-container02').on('click','.main-box',function(){
+					var userid=$(this).attr('id')
+					var smUserId = localStorage.getItem('smMerchantId');
+					$('.kefy').show()
+					$('.kefy iframe').attr('src',url_url +'/house/intoMerchan?userId=' + userid+ '&merchantId=' + smUserId)
+				})
+				$('#close').click(function(){
+					$('.kefy').hide()
+				})
 			});
 		</script>
 	</body>

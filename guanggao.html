@@ -17,7 +17,7 @@
 		<div class="wrapper">
 			<div class="header">
 				<div class="header-top">
-					<div class="header-aside" onclick="mui.openWindow('shop.html')">
+					<div class="header-aside mui-action-back">
 						<img src="img/block-left.png" />
 					</div>
 					<div class="header-content">广告管理</div>
@@ -70,24 +70,23 @@
 				});
 
 				mui('body').on('tap', '.main-box', function() {
-					var MiddleId = $(this).data('id');
-					console.log(MiddleId);
-					mui.openWindow({
-						url: 'AdvertiseDetail.html',
-						id: 'AdvertiseDetail',
-						extras: {
-							'MiddleId': MiddleId
-						},
-						waiting: {
-							autoShow: false
-						}
-					});
+//					var MiddleId = $(this).data('id');
+//					var type = $(this).data('type');
+//					mui.openWindow({
+//						url: 'AdvertiseDetail.html',
+//						id: 'AdvertiseDetail',
+//						extras: {
+//							'MiddleId': MiddleId,
+//							'type':type
+//						},
+//						waiting: {
+//							autoShow: false
+//						}
+//					});
 				})
 
 				function ADstatus(type, ele) {
 					let smMerchantId = localStorage.getItem('smMerchantId');
-
-					console.log(type);
 					$.ajax({
 						type: "post",
 						url: url_url + "/merchant/queryMyAdvertisementInfo",
@@ -97,18 +96,11 @@
 							'type': type
 						},
 						success: function(res) {
-							console.log(res);
-							console.log(type);
 							var titImg = localStorage.getItem('smMeShopImg')
 							var adlist = res.data;
 							let ADname = '';
 							let ADlistHtml = '';
-							if(adlist.smAmType == 1) {
-								ADname = '首页广告'
-							} else {
-								ADname = '分类广告'
-							}
-
+							
 							let bottomBtn = '';
 
 							for(var i = 0; i < adlist.length; i++) {
@@ -129,9 +121,13 @@
 										</div>
 										</div>`;
 								}
-                                
+                                if(adlist[i].smAmType == 1) {
+									ADname = '首页广告'
+								} else {
+									ADname = '分类广告'
+								}
 								ADlistHtml += `
-									<div class="main-box" data-id=${adlist[i].smAdvertisementMiddleId}>
+									<div class="main-box" data-id=${adlist[i].smAdvertisementMiddleId} data-type=${adlist[i].smAmType}>
 										<div class="main-tab">
 											<div class="main-left">
 												<img src=${titImg} />
@@ -143,6 +139,7 @@
 												<div class="main-lower">
 													<div class="main-number">开始时间：${startTime}</div>
 													<div class="main-number">结束时间：${endTime}</div>
+													<div class="main-number" style='display:${adlist[i].smAmType==2?"block":"none"}'>投放地址：${adlist[i].smAddress}</div>
 												</div>
 										</div>
 										</div>` + bottomBtn;

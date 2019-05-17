@@ -136,7 +136,13 @@
 									plus.nativeUI.alert("支付失败：" + error.code);
 								});
 							}else{
-								alert('支付成功')
+								if(res.status==200){
+									alert('支付成功')
+									mui.back()
+								}else{
+									alert(res.msg)
+								}
+								
 							}
 						},
 						error: function(err) {

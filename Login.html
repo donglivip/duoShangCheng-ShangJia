@@ -24,7 +24,7 @@
 				</div>
 				<div class="main-signin" id="main-signin">登录</div>
 				<div class="main-bottom">
-					<div class="main-phone">手机快捷登录 </div>
+					<div class="main-phone" style="display: none;">手机快捷登录 </div>
 					<div class="main-phone">新商家注册 </div>
 				</div>
 
@@ -89,12 +89,6 @@
 						var login = data.data
 						if(data.status == 200) {
 							// 跳到认证页面
-							if(login.smShopTypeId == -1) {
-								mui.toast('请先完成认证！')
-								mui.openWindow({
-									url:'Authentication.html'
-								})
-							}
 							localStorage.setItem("storeinfoid", 1);
 							localStorage.setItem("smMerchantId", login.smMerchantId);
 							localStorage.setItem("smShopTypeId", login.smShopTypeId);
@@ -117,6 +111,13 @@
 							localStorage.setItem("smMeUpdateNameString", login.smMeUpdateNameString);
 							localStorage.setItem("smMeEnsurePrice", login.smMeEnsurePrice);
 							localStorage.setItem("smMeMortgagePrice", login.smMeMortgagePrice);
+							if(login.smShopTypeId == -1) {
+								mui.toast('请先完成认证！')
+								mui.openWindow({
+									url:'Authentication.html'
+								})
+								return false;
+							}
 							mui.plusReady(function() {
 								plus.runtime.restart();
 							})

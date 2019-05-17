@@ -213,7 +213,6 @@
 						alert('请选择店铺类别')
 						return false
 					} else {
-						console.log(smShopTypeId);
 						$.ajax({
 							type: "post",
 							url: url_url + "/merchant/selectSmMerchantCommodityRule",
@@ -222,7 +221,6 @@
 								smShopTypeId: smShopTypeId
 							},
 							success: function(res) {
-								console.log(res);
 								if(res.data == null) {
 									localStorage.setItem('smMcNum', 10)
 								} else {
@@ -270,16 +268,16 @@
 							'smMeCardBackImg': smMeCardBackImg,
 							'smMeShopImg': smMeShopImg,
 							'smMeBusinessLicenesImg': smMeBusinessLicenesImg,
-							'smMeCommodityNum': localStorage.getItem('smMcNum')
+							smMerchantId:localStorage.getItem('smMerchantId')
 
 						},
 						success: function(res) {
-							console.log(res);
+							console.log(JSON.stringify(res));
 							if(res.status == 200) {
 								mui.toast('认证成功');
-								setTimeout(function() {
-									mui.openWindow('Login.html')
-								}, 1000)
+								mui.plusReady(function() {
+									plus.runtime.restart();
+								})
 							} else {
 								alert(res.msg);
 							}
@@ -301,7 +299,7 @@
 						layer: 3
 					});
 					cityPicker3.setData(cityData3);
-					var showCityPickerButton = doc.getElementById('avatar');
+					var showCityPickerButton = document.getElementById('addressName');
 					showCityPickerButton.addEventListener('tap', function(event) {
 
 						cityPicker3.show(function(items) {

@@ -242,7 +242,7 @@
 								//									支付宝支付
 								plus.payment.request(channel[0], res.data[0], function(result) {
 									mui.toast('投放成功')
-									window.reload()
+									location.reload()
 								}, function(error) {
 									alert('支付失败')
 								});
@@ -251,13 +251,19 @@
 								//									微信支付
 								plus.payment.request(channel[1], res, function(result) {
 									mui.toast('投放成功')
-									window.reload()
+									location.reload()
 								}, function(error) {
 									alert('支付失败'+JSON.stringify(error))
 								});
 							} else {
-								mui.toast('投放成功')
-								window.reload()
+								if (res.status==200) {
+									mui.toast('投放成功')
+									location.reload()
+								} else{
+									mui.toast(res.msg)
+								}
+								
+								
 							}
 						},
 						error: function(err) {

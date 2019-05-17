@@ -84,7 +84,7 @@
 	<body>
 		<div class="wrapper">
 			<div class="header">
-				<div class="header-aside" onclick="mui.openWindow('guanggao.html')">
+				<div class="header-aside mui-action-back">
 					<img src="img/block-left.png" />
 				</div>
 				<div class="header-content">投放广告</div>
@@ -307,32 +307,41 @@
 						var _html = ''
 						$.ajax({
 							type: "post",
-							url: url_url + '/merchant/querysmAdvertisementClassify',
+							url: url_url + '/merchant/querySmAdvertisementClassify',
 							async: true,
 							success: function(res) {
 								console.log(res)
 								var obj = res.data;
-								for(i in obj) {
-									console.log(obj[i])
-									_html += `
-								    <div class="itemBox">
-										<div>
-											<p><span>地区: </span><span>${obj[i].smAaProvice + obj[i].smAaCity + obj[i].smAaArea}</span></p>
-											<p><span>月份: </span><span>${obj[i].smAcTime}</span></p>
-										</div>
-										<div>
-											<p><span>分类: </span><span>${obj[i].smStName}</span></p>
-											<p><span>价格: </span>￥<span style="color: red;">${obj[i].smAcPrice}</span></p>
-										</div>
-										<div>
-											<p><span>市场: </span><span>${obj[i].smAmName}</span></p>
-											<a href="#typeLayer" class="sureBtn" data-id=${obj[i].smAdvertisementClassifyId} data-pri=${obj[i].smAcPrice}>投放</a>
-										</div>
-					                 </div>
-								`;
-								}
 								$('#isShow').empty();
-								$('#isShow').append(_html)
+								for(i in obj) {
+									var myhtml;
+									if (obj[i].shAdvertisementType==2) {
+										myhtml='<p><span>广告类型: </span><span>'+obj[i].smShopTypeId+' - 地区广告</span></p>'
+									} else if(obj[i].shAdvertisementType==1){
+										myhtml='<p><span>广告类型: </span><span>'+obj[i].smShopTypeId+' - 一级分类广告</span></p>'
+									} else if(obj[i].shAdvertisementType==3){
+										myhtml='<p><span>广告类型: </span><span>'+obj[i].smShopTypeId+' - 市场广告</span></p>'
+									} else if(obj[i].shAdvertisementType==4){
+										myhtml='<p><span>广告类型: </span><span>'+obj[i].smShopTypeId+' - 三级分类广告</span></p>'
+									}
+									$('#isShow').append(`
+										<div class="itemBox">
+											<div>
+												<p><span>广告名称: </span><span>${obj[i].smAdvertisementNameId}</span></p>
+												<p><span>月份: </span><span>${obj[i].smAcTime}</span></p>
+											</div>
+											<div>
+												${myhtml}
+												<p><span>价格: </span>￥<span style="color: red;">${obj[i].smAcPrice}</span></p>
+											</div>
+											<div>
+												<a href="#typeLayer" class="sureBtn" data-id='${obj[i].smAdvertisementClassifyId}' data-pri='${obj[i].smAcPrice}'>投放</a>
+											</div>
+										 </div>
+									`)
+								}
+								
+								
 
 							},
 							error: function(err) {

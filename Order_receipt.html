@@ -271,10 +271,6 @@
 										_Xbtn = `<div class="main-news">已支付</div><button class="main-word">查看物流</button>`
 										console.log(4);
 										break;
-									default:
-										_Xbtn = `<div class="main-news">已支付</div><button id="signedBtn" data-id= ${_order[i].smOrderId} class="main-word">完成交易</button>`
-										console.log(5);
-										break;
 								}
 
 								console.log(_order[i]);
@@ -368,8 +364,8 @@
 						'smOrUpdateName': smOrUpdateName
 					},
 					success: function(res) {
-						console.log(JSON.stringify(res));
 						$(_this).attr('disabled', true).css('background', '#A2A2A2');
+						location.reload()
 					},
 					error: function() {
 

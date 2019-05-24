@@ -34,7 +34,15 @@ body,
 	width: .3rem;
 	margin: .24rem;
 }
-
+#ShopType{
+	margin:.5rem .2rem;
+}
+#ShopType select{
+	border: 1px solid gainsboro;
+	height: .8rem;
+	width: 3rem;
+	margin: .1rem;
+}
 .header-aside img {
 	height: .36rem;
 }
@@ -85,7 +93,7 @@ body,
 .main-news {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: space-between;
 	flex: 1;
 	font-size: .24rem;
 	color: #333333;

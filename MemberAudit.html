@@ -46,7 +46,7 @@
 
 			</div>
 			<div id="item2" class="mui-control-content">
-
+				
 			</div>
 		</div>
 
@@ -136,11 +136,17 @@
 								memberHtml += `
 							<section class="mui-table-view unaudited" data-id=${member[i].smApplyMemberId}>
 								<div class="main-content">
-									<img src="${url_url + member[i].smAmShopLogo}"/>
+									<div class="left">
+										<img src="${url_url + member[i].smAmShopLogo}"/>
+										<br/>
+										<img src="${url_url + member[i].smAmBusinessLicenesImg}"/>
+									</div>
+									
 									<div class="main-txt">
 										<p class="content-name">${member[i].smMerchantName}</p>
 										<p class="content-time">申请时间：${member[i].smAmCreateTimeString}</p>
 										<p class="content-time">申请QQ：${member[i].smAmQq}</p>
+										<p class="content-time">店铺地址：${member[i].smAmAddress}</p>
 									</div>
 								</div>` + footBtn;
 							}

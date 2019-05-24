@@ -156,7 +156,6 @@
 								state: index
 							},
 							success: function(res) {
-								if(res.status == 200) {
 									if(index == 1) {
 										//									支付宝支付
 										plus.payment.request(channel[0], res.data[0], function(result) {
@@ -164,15 +163,14 @@
 										}, function(error) {
 											alert('支付失败')
 										});
-									} else if(index == 2) {
+									} else {
 										//									微信支付
-										plus.payment.request(channel[1], res.data, function(result) {
+										plus.payment.request(channel[1], res, function(result) {
 											mui.toast('投放成功')
 										}, function(error) {
 											alert('支付失败')
 										});
 									}
-								}
 							},
 							error: function(err) {
 								console.log(err)
@@ -218,7 +216,6 @@
 								state: index
 							},
 							success: function(res) {
-								if(res.status == 200) {
 									if(index == 1) {
 										//									支付宝支付
 										plus.payment.request(channel[0], res.data[0], function(result) {
@@ -228,13 +225,12 @@
 										});
 									} else if(index == 2) {
 										//									微信支付
-										plus.payment.request(channel[1], res.data, function(result) {
+										plus.payment.request(channel[1], res, function(result) {
 											mui.toast('投放成功')
 										}, function(error) {
 											alert('支付失败')
 										});
 									}
-								}
 							},
 							error: function(err) {
 								console.log(err)

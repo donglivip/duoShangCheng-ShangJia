@@ -51,13 +51,11 @@
 			data: {
 				smMerchantId: smMerchantId
 			},
-
 			success: function(res) {
 				console.log(JSON.stringify(res));
 				let ruleboxHtml = '';
 				if(res.status == 200) {
 					for(var i = 0; i < res.data.length; i++) {
-						console.log(res.data[i].smEtIsDefault);
 						if(res.data[i].smEtIsDefault == 1) {
 							ruleboxHtml += `
 						  <div class="rule-box" data-id=${res.data[i].smExpressTemplateId} data-tid=${res.data[i].smExpressFeeId}>

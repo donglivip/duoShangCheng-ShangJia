@@ -122,6 +122,7 @@
 							state: that.status
 						},
 						success: function(res) {
+							console.log("res: " + JSON.stringify(res));
 //							plus.nativeUI.closeWaiting()
 							if(that.status == 1) {
 								plus.payment.request(that.channel[0], res.data[0], function(result) {

@@ -80,31 +80,39 @@
 				<div class="main-box">
 					<input class="main-text" type="text" id="idCardNum" placeholder="身份证号码" />
 				</div>
-				<div class="main-container" id="types">
-					<div class="main-text">
-						商户经营类别<br>
-						(可上传<span id="mynum" style="color: red;">0</span>件商品)
+				<div class="main-bottom">
+					<div class="main-trademark">
+						商户经营类别(该分类可上传<span id="mynum" style="color: red;">0</span>件商品)
 					</div>
 					<div id="ShopType" class="main-news" style="padding-right: 0.24rem;">
 						<select name="TypeOne" id="TypeOne">
 							<option value="0">请选择</option>
-
+					
 						</select>
 						<select name="TypeTwo" id="TypeTwo">
 							<option value="0">请选择</option>
-
+					
+						</select>
+						<select name="Typethr" id="Typethr">
+							<option value="0">请选择</option>
+						
 						</select>
 					</div>
-
 				</div>
-				<div id='userResult' class="ui-alert"></div>
-				<div class="main-container">
-					<div class="main-text" style="width: 30%;">商户所在地</div>
-					<input type="text" class="main-news" id="addressName" readonly="" />
-					<img id="avatar" src="img/right.png" />
+				<div class="main-bottom">
+					<div class="main-trademark">
+						商户所在地
+					</div>
+					<div id="ShopType" class="main-news" style="padding-right: 0.24rem;">
+						<select name="TypeOne" id="addressName">
+							<option value="0">请选择地区</option>
+						</select>
+						<select name="TypeTwo" id="shicahng" style="display: none;">
+							<option value="0">请选择市场</option>
+					
+						</select>
+					</div>
 				</div>
-				<div id='cityResult3' class="ui-alert"></div>
-
 				<div class="main-Photo">
 					<div class="main-upload">上传身份证照</div>
 					<div class="main-Certificates">
@@ -125,10 +133,7 @@
 		<div class="bottom">
 			<button class="bottom-text" id="submit" style="height: 45px;">实名认证</button>
 		</div>
-		<script src="js/mui.picker.js"></script>
-		<script src="js/mui.poppicker.js"></script>
 		<script src="js/jquery-2.1.0.js"></script>
-		<script src="js/city.data-3.js"></script>
 		<script src="js/url.js"></script>
 		<script src="js/upload.js"></script>
 		<script>
@@ -151,7 +156,54 @@
 					console.log(JSON.stringify(data));
 				}
 			});
-
+			<!-- 获取所有地区 -->
+			$.ajax({
+				type: "post",
+				url: url_url + '/user/selectSmAdvertisementAddress',
+				async: true,
+				dataType: "JSON",
+				success: function(res) {
+					for(var i = 0; i < res.data.length; i++) {
+						$('#addressName').append(`
+							<option value='${res.data[i].smAdvertisementAddressId}'>${res.data[i].smAaProvice}${res.data[i].smAaCity}${res.data[i].smAaArea}</option>
+						`)
+					}
+			
+				},
+				error: function(data) {
+					console.log(JSON.stringify(data));
+				}
+			});
+			<!-- 获取市场 -->
+			$('#addressName').change(function(){
+				var id=$(this).val()
+				if(id!=0){
+					$('#shicahng').show()
+				}else{
+					$('#shicahng').hide()
+				}
+				$.ajax({
+					type: "post",
+					url: url_url + '/user/selectSmAdvertisementMarket',
+					async: true,
+					data:{
+						smAdvertisementAddressId:id
+					},
+					dataType: "JSON",
+					success: function(res) {
+						$('#shicahng').html('')
+						for(var i = 0; i < res.data.length; i++) {
+							$('#shicahng').append(`
+								<option value='${res.data[i].smAdvertisementMarketId}'>${res.data[i].smAmName}</option>
+							`)
+						}
+				
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+					}
+				});
+			})
 			// 获取二级分类
 
 			$('#TypeOne').on('change', function() {
@@ -168,7 +220,7 @@
 					},
 					success: function(res) {
 						for(var i = 0; i < res.data.length; i++) {
-							optHtml += `<option value=${res.data[i].smShopTypeId} num='${res.data[i].smStNum}'>${res.data[i].smStName}</option>`;
+							optHtml += `<option value=${res.data[i].smShopTypeId} >${res.data[i].smStName}</option>`;
 						};
 						$('#TypeTwo').append(optHtml);
 
@@ -179,11 +231,35 @@
 				});
 			});
 			$('#TypeTwo').change(function(){
-				smMeCommodityNum=$("#TypeTwo option:selected").attr('num')
+				$('#Typethr').html('');
+				$('#Typethr').html('<option value="0" num=0>请选择</option>');
+					let optHtml = '';
+					let val = $('#TypeTwo').val();
+					$.ajax({
+						type: "post",
+						url: url_url + '/user/selectSmShopTypeTwo',
+						async: true,
+						dataType: "JSON",
+						data: {
+							'smStPpid': val
+						},
+						success: function(res) {
+							for(var i = 0; i < res.data.length; i++) {
+								optHtml += `<option value=${res.data[i].smShopTypeId} num='${res.data[i].smStNum}'>${res.data[i].smStName}</option>`;
+							};
+							$('#Typethr').append(optHtml);
+				
+						},
+						error: function(data) {
+							console.log(JSON.stringify(data));
+						}
+					});
+			})
+			$('#Typethr').change(function(){
+				smMeCommodityNum=$("#Typethr option:selected").attr('num')
 				$('#mynum').html(smMeCommodityNum)
 			})
 			$(function() {
-
 				$('#idCard').click(function() {
 					$(this).upload('/merchant/insertCompanyCardImage');
 				})
@@ -200,13 +276,14 @@
 				//提交表单  注册验证
 				$('#submit').click(function() {
 					
-					let smShopTypeId = $('#TypeTwo').val();
+					let smShopTypeId = $('#Typethr').val();
 					let smMeShopName = $('#shopName').val();
 					let smMeLegalPerson = $('#userName').val();
 					let smMeLegalPhone = $('#phone').val();
 					let smMePassword = $('#pwd').val();
 					let smMeCardNo = $('#idCardNum').val();
-					let smMeAddress = $('#addressName').val();
+					let smMeAddress = $('#addressName').val();//地区
+					let shichang = $('#shicahng').val();//地区
 					let smMeCardFrontImg = $('#idCard').attr('src');
 					let smMeCardBackImg = $('#idCardBack').attr('src');
 					let smMeShopImg = $('#shopLogo').attr('src');
@@ -218,7 +295,6 @@
 						alert('请选择店铺类别')
 						return false
 					} else {
-						console.log(smShopTypeId);
 						$.ajax({
 							type: "post",
 							url: url_url + "/merchant/selectSmMerchantCommodityRule",
@@ -275,7 +351,10 @@
 						alert('请输入地址')
 						return false
 					}
-
+					if(shicahng == ''||shicahng==0) {
+						alert('请输入市场')
+						return false
+					}
 					if(smMeCardFrontImg == 'img/ID.png') {
 						alert('请上传身份证正面照')
 						return false
@@ -306,7 +385,9 @@
 							'smMeCardBackImg': smMeCardBackImg,
 							'smMeShopImg': smMeShopImg,
 							'smMeBusinessLicenesImg': smMeBusinessLicenesImg,
-							'smMeCommodityNum':smMeCommodityNum
+							'smMeCommodityNum':smMeCommodityNum,
+							smAdvertisementAddressId:smMeAddress,
+							smAdvertisementMarketId:shichang
 							
 						},
 						success: function(res) {
@@ -326,28 +407,6 @@
 					});
 				})
 			});
-
-			//商户所在地 地址选择
-			(function($, doc) {
-				$.init();
-				$.ready(function() {
-
-					var cityPicker3 = new $.PopPicker({
-						layer: 3
-					});
-					cityPicker3.setData(cityData3);
-					var showCityPickerButton = doc.getElementById('addressName');
-					showCityPickerButton.addEventListener('tap', function(event) {
-
-						cityPicker3.show(function(items) {
-							//							cityResult3.innerText = "你选择的城市是:" + (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
-							//							返回 false 可以阻止选择框的关闭
-							//							return false;
-							doc.getElementById('addressName').value = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
-						});
-					}, false);
-				});
-			})(mui, document);
 		</script>
 	</body>
 

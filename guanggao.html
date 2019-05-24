@@ -89,11 +89,11 @@
 					let smMerchantId = localStorage.getItem('smMerchantId');
 					$.ajax({
 						type: "post",
-						url: url_url + "/merchant/queryMyAdvertisementInfo",
+						url: url_url + "/merchant/queryMyadvertise",
 						async: true,
 						data: {
 							'smMerchantId': smMerchantId,
-							'type': type
+							'smAmType': type
 						},
 						success: function(res) {
 							var titImg = localStorage.getItem('smMeShopImg')
@@ -106,26 +106,6 @@
 							for(var i = 0; i < adlist.length; i++) {
 								let startTime = adlist[i].smAmCreateTime.substring(0, 10) + ' ' + adlist[i].smAmCreateTime.substring(11, 19);
 								let endTime = adlist[i].smAmTime.substring(0, 10) + ' ' + adlist[i].smAmCreateTime.substring(11, 19);
-								if(type == 1) {
-									bottomBtn = `
-                             	   <div class="main-bottom">
-											<div class="main-news">广告价格：￥${adlist[i].smAmPrice}</div>
-										</div>
-										</div>
-                             	`;
-								} else {
-									bottomBtn = `
-                             	   <div class="main-bottom">
-											<div class="main-news">广告价格：￥${adlist[i].smAmPrice}</div>
-											<div class="main-word" onclick="mui.openWindow('Launch.html')">再次投放</div>
-										</div>
-										</div>`;
-								}
-                                if(adlist[i].smAmType == 1) {
-									ADname = '首页广告'
-								} else {
-									ADname = '分类广告'
-								}
 								ADlistHtml += `
 									<div class="main-box" data-id=${adlist[i].smAdvertisementMiddleId} data-type=${adlist[i].smAmType}>
 										<div class="main-tab">
@@ -134,12 +114,11 @@
 											</div>
 											<div class="main-right">
 												<div class="main-upper">
-													<div class="main-characters">${ADname}</div>
+													<div class="main-characters">${adlist[i].name}</div>
 												</div>
 												<div class="main-lower">
 													<div class="main-number">开始时间：${startTime}</div>
 													<div class="main-number">结束时间：${endTime}</div>
-													<div class="main-number" style='display:${adlist[i].smAmType==2?"block":"none"}'>广告名称：${adlist[i].smStName}</div>
 												</div>
 										</div>
 										</div>` + bottomBtn;

@@ -136,20 +136,6 @@
 		})(mui, document);
 
 		$(function() {
-			// $('.right').click(function() {
-			// 	$('.isfree').val('2');
-			// 	$('.diyPost').hide();
-			// 	$('.left').removeClass('active');
-			// 	$('.noPost').show();
-			// 	$(this).addClass('active');
-			// });
-			// $('.left').click(function() {
-			// 	$('.isfree').val('1');
-			// 	$('.noPost').hide();
-			// 	$('.right').removeClass('active');
-			// 	$('.diyPost').show();
-			// 	$(this).addClass('active');
-			// });
 			$('body').on('click', '.editFee', function() {
 				let smExpressFeeId = $(this).parent().data('id');
 				//页面跳转 传参
@@ -373,7 +359,6 @@
 
 						},
 						success: function(res) {
-							console.log(JSON.stringify(res.msg))
 							if(res.status == 200) {
 								<!-- mui.back(); -->
 							} else {

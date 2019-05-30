@@ -49,19 +49,19 @@
 				<div class="main-inner" v-if="topindex==1">
 					<div class="nav-top">
 						<select v-model="yijiid" @change="yijicahnge">
-							<option value="" >请选择</option>
+							<option value="" >行业分类</option>
 							<option :value="val.smShopTypeId" v-for="(val,index) in yijidata">{{val.smStName}}</option>
 						</select>
 						<select v-model="erjiid" @click="haverule(4)">
-							<option value="" >请选择</option>
+							<option value="" >产品分类</option>
 							<option :value="val.smShopTypeId" v-for="(val,index) in erjidata">{{val.smStName}}</option>
 						</select>
 						<select v-model="diquid" @change='diquchange'>
-							<option value="" >选择地区</option>
+							<option value="" >地区分类</option>
 							<option :value="val.smAdvertisementAddressId" v-for="(val,index) in diqudata">{{val.smAaProvice}}{{val.smAaCity}}{{val.smAaArea}}</option>
 						</select>
 						<select v-model="shichangid" @click="haverule(1)">
-							<option value="" >选择市场</option>
+							<option value="" >市场分类</option>
 							<option :value="val.smAdvertisementMarketId" v-for="(val,index) in shicahngdata">{{val.smAmName}}</option>
 						</select>
 					</div>

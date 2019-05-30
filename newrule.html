@@ -34,7 +34,7 @@
 					运费模板设置
 				</div>
 				<div class="heade-aside" id="saveTemp">
-					保存
+				
 				</div>
 			</div>
 			<div class="main">
@@ -61,11 +61,11 @@
 						卖家包运费
 					</div>
 				</div>
-				<!-- <div class="diyPost">
+				<div class="diyPost">
 					<div class="addNew">
 						<i class="iconfont icon-tianjia"></i>
 					</div>
-				</div> -->
+				</div>
 				<div class="noPost">
 					<p>
 						该商品运费由卖家承担。
@@ -194,7 +194,6 @@
 			//获取页面跳转 传的 运费模版ID
 			var value = plus.webview.currentWebview().TemplateId;
 			var smMerchantId = localStorage.getItem('smMerchantId');
-			console.log(value)
 			localStorage.setItem('existAdress', null)
 			if(value) {
 				let ruleHtml = '';
@@ -226,7 +225,10 @@
 								var bb = arr.split(',').slice(0, -1);
 
 								localStorage.setItem('existAdress', bb);
-
+// <div>
+// 											<span class="leftSpan">首件:</span><span>${res.data[i].smEfDefaultNum}件</span>;&nbsp;&nbsp;&nbsp;&nbsp;<span class="leftSpan">运费:</span><span>${res.data[i].smEfDefaultPrice}元</span>; &nbsp;&nbsp;&nbsp;&nbsp;
+// 											<span class="leftSpan">续件:</span><span>${res.data[i].smEfAddNum}件</span>;&nbsp;&nbsp;&nbsp;&nbsp;<span class="leftSpan">续费:</span><span>${res.data[i].smEfAddPrice}元</span>
+// 										</div>
 								ruleHtml += `
 								  <section class="freCard">
 										<div>
@@ -235,10 +237,7 @@
 				                                 ${adress}
 											</div>
 										</div>
-										<div>
-											<span class="leftSpan">首件:</span><span>${res.data[i].smEfDefaultNum}件</span>;&nbsp;&nbsp;&nbsp;&nbsp;<span class="leftSpan">运费:</span><span>${res.data[i].smEfDefaultPrice}元</span>; &nbsp;&nbsp;&nbsp;&nbsp;
-											<span class="leftSpan">续件:</span><span>${res.data[i].smEfAddNum}件</span>;&nbsp;&nbsp;&nbsp;&nbsp;<span class="leftSpan">续费:</span><span>${res.data[i].smEfAddPrice}元</span>
-										</div>
+										
 										<div class="freBtn" data-id=${res.data[i].smExpressFeeId}>
 											<p class="editFee">修改</p>
 											<p class='deleteFee'>删除</p>

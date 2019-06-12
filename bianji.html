@@ -55,7 +55,7 @@
 					<img src="img/youjian.png" />
 				</div>
 				<div class="hedaer-center">
-					发布商品
+					编辑商品
 				</div>
 				<div class="heade-aside">
 
@@ -176,7 +176,7 @@
 
 				</div>
 				<div class="btn">
-					创建
+					编辑
 				</div>
 			</div>
 		</div>
@@ -187,7 +187,7 @@
 		<script src="js/url.js"></script>
 		<script src="js/wangEditor-mobile.js"></script>
 		
-		<script src="js/upload01.js"></script>
+		<script src="js/upload.js"></script>
 		<script type="text/javascript">
 			//判断是否 设置运费模版  
 			var smMerchantId = localStorage.getItem('smMerchantId'),
@@ -202,6 +202,7 @@
 					smMerchantId: smMerchantId
 				},
 				success: function(res) {
+					
 					if(!res.data) {
 						mui.alert('请先设置运费模板', function() {
 							mui.openWindow('freight.html')
@@ -447,9 +448,10 @@
 					}
 					$.ajax({
 						type: "post",
-						url: url_url + "/merchant/insertCommodity",
+						url: url_url + "/merchant/updateSmCommodity",
 						async: true,
 						data: {
+							smCommodityId:localStorage.getItem('shangpinid'),
 							smCommodityTypeId: smCommodityTypeId,
 							smCoFarmat: JSON.stringify(guige),
 							smCoParameter: JSON.stringify(canshu),
@@ -469,27 +471,8 @@
 							smCoColour:JSON.stringify(smCoColour)
 						},
 						success: function(res) {
-							console.log(JSON.stringify( {
-							smCommodityTypeId: smCommodityTypeId,
-							smCoFarmat: JSON.stringify(guige),
-							smCoParameter: JSON.stringify(canshu),
-							smCoName: smCoName,
-							smCoDefaultPrice: smCoDefaultPrice,
-							smCoIsDiscount: 2,
-							smCoStock: smCoStock,
-							smCoSalesVolume: 0,
-							smCoEvaluateGrade: 5,
-							smCoIsFreeShipping: 1,
-							smCoIsShelf: 1,
-							smMerchantId: smMerchantId,
-							smCoCreateName: smMerchantId,
-							smCoDefaultImg:  JSON.stringify(imglist),
-							smCoResult: smCoResult,
-							smCoActivity:huodong,
-							smCoColour:JSON.stringify(smCoColour)
-						}))
 							if(res.status == 200) {
-								mui.toast('添加成功')
+								mui.toast('编辑成功')
 								mui.back()
 							} else {
 								alert(res.msg)

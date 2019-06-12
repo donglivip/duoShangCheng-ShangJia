@@ -88,7 +88,6 @@
 		<script type="text/javascript" src="js/loading.js"></script>
 		<script type="text/javascript">
 			var smUserId = localStorage.getItem('smMerchantId');
-
 			$.ajax({
 				type: "post",
 				url: url_url + "/merchant/queryWaitingList",
@@ -138,9 +137,7 @@
 			});
 			//  取消订单
 			$('body').on('click', '.cancelItemBtn', function() {
-				
 				var smOrderId = $(this).data('id')
-alert(smOrderId)
 				$.ajax({
 					type: "post",
 					url: url_url + "/merchant/merchantCancellationOfOrders",
@@ -164,7 +161,6 @@ alert(smOrderId)
 			//  接单
 			$('body').on('click', '.sureItemBtn', function() {
 				var smOrderId = $(this).data('id')
-				console.log(smOrderId);
 				$.ajax({
 					type: "post",
 					url: url_url + "/merchant/merchantReceipt",
@@ -188,12 +184,6 @@ alert(smOrderId)
 			})
 
 			$(function() {
-
-				//				document.getElementById('wait').addEventListener('tap', function() {
-				//					$('#waitList').empty();
-				//					QueryOrder(smUserId, '#waitList');
-				//				});
-
 				document.getElementById('unpaid').addEventListener('tap', function() {
 					$('#unpaidView').empty();
 					QueryOrder(smUserId, 1, '#unpaidView');

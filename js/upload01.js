@@ -93,7 +93,10 @@
 						},
 						success: function(res) {
 							if(res.status == 200) {
-								$(thats).attr('src',url_url + res.data)
+								imglist.push(url_url + res.data)
+								$('.img-box').append(`
+									<img src="${url_url + res.data}"/>
+								`)
 							} else {
 								alert(res.msg)
 							}

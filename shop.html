@@ -65,6 +65,7 @@
 				</div>
 			</div>
 			<div class="main-type">
+			
 				<div class="main-tips">
 					<img src="img/Setup.png" />
 					<div class="main-classification">店铺设置</div>
@@ -82,8 +83,20 @@
 					<div class="main-classification">官方客服</div>
 				</a>
 				<div class="main-tips">
-					<img src="img/Setup.png" />
+					<img src="img/commodity.png" >
 					<div class="main-classification">分类管理</div>
+				</div>
+				<div class="main-tips">
+					<img src="img/Complaint.png" >
+					<div class="main-classification">企业简介</div>
+				</div>
+					<div class="main-tips">
+					<img src="img/about.png" >
+					<div class="main-classification">分享店铺</div>
+				</div>
+				<div class="main-tips">
+					<img src="img/commodity.png" >
+					<div class="main-classification">我的推荐</div>
 				</div>
 			</div>
 		</div>
@@ -146,6 +159,17 @@
 			//分类管理
 			main_tips[3].addEventListener("tap", function() {
 				dui.jump("addType.html", "addType");
+			})
+			//企业管理
+			main_tips[4].addEventListener("tap", function() {
+				dui.jump("jianjie.html", "jianjie");
+			})
+			//分享
+			main_tips[5].addEventListener("tap", function() {
+				dui.jump("share.html", "share");
+			})
+			main_tips[6].addEventListener("tap", function() {
+				dui.jump("jiebang.html", "jiebang");
 			})
 			mui.plusReady(function() {
 				document.addEventListener('shop', function() {

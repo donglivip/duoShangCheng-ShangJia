@@ -200,413 +200,507 @@
         }
     },
     "dependencies" : {
-        "pages" : {
-            "index.html" : {
-                "resources" : [
-                    "img/ding dan.png",
-                    "img/485263.jpg",
-                    "img/4 (1).jpg",
-                    "img/horn.png",
-                    "css/main.css",
-                    "img/3 (1).jpg",
-                    "js/jquery-2.1.0.js",
-                    "img/shop.png",
-                    "js/mui.js",
-                    "img/Truck.png",
-                    "js/rem.js",
-                    "img/xx.png",
-                    "js/dui.js",
-                    "img/yes.png",
-                    "img/yan.png",
-                    "img/timg.jpg"
-                ],
-                "refer" : [
-                    "shop.html",
-                    "logistics.html",
-                    "Notice.html",
-                    "Order-receipt.html",
-                    "Login.html"
-                ],
-                "priority" : 0
-            },
-            "setting.html" : {
-                "resources" : [
-                    "img/Left.png",
-                    "img/license.png",
-                    "img/right.png",
-                    "css/setting.css",
-                    "img/3.jpg",
-                    "img/Licence.png",
-                    "js/jquery-2.1.0.js",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js",
-                    "js/city.js",
-                    "css/mui.poppicker.css",
-                    "js/picker.min.js",
-                    "css/mui.picker.css",
-                    "js/mui.picker.js",
-                    "js/mui.poppicker.js"
-                ],
-                "refer" : [ "personal.html", "shop.html" ],
-                "priority" : 0
-            },
-            "shop.html" : {
-                "resources" : [
-                    "img/dianpu.png",
-                    "css/shop.css",
-                    "img/Setup.png",
-                    "img/commodity.png",
-                    "img/xiaoxi.png",
-                    "img/Advertisement.png",
-                    "img/about.png",
-                    "img/Complaint.png",
-                    "img/Customer.png",
-                    "img/wallet.png",
-                    "img/ding dan.png",
-                    "img/485263.jpg",
-                    "js/jquery-2.1.0.js",
-                    "js/rem.js",
-                    "js/dui.js",
-                    "js/mui.js",
-                    "img/width.jpg"
-                ],
-                "refer" : [
-                    "setting.html",
-                    "Administration.html",
-                    "My-wallet.html",
-                    "about.html",
-                    "personal.html",
-                    "Advertisement.html",
-                    "Commodity.html",
-                    "Order-receipt.html",
-                    "index.html",
-                    "business.html",
-                    "Login.html",
-                    "freight.html",
-                    "Vip.html",
-                    "MemberAudit.html",
-                    "shoping.html",
-                    "guanggao.html"
-                ],
-                "priority" : 0
-            },
-            "personal.html" : {
-                "resources" : [ "css/personal.css", "img/Left.png" ],
-                "refer" : [ "Name.html", "Password.html", "shop.html" ],
-                "priority" : 0
-            },
-            "Name.html" : {
-                "resources" : [ "css/Name.css" ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "logistics.html" : {
-                "resources" : [ "img/1 (1).jpg", "css/logistics.css", "img/Left.png" ],
-                "refer" : [ "index.html" ],
-                "priority" : 0
-            },
-            "Notice.html" : {
-                "resources" : [ "css/Notice.css", "img/Left.png", "img/left.png" ],
-                "refer" : [ "index.html" ],
-                "priority" : 0
-            },
-            "Administration.html" : {
-                "resources" : [ "css/Administration.css" ],
-                "refer" : [ "Complaint.html" ],
-                "priority" : 0
-            },
-            "Complaint.html" : {
-                "resources" : [
-                    "img/6 (1).jpg",
-                    "img/5 (1).jpg",
-                    "css/Complaint.css",
-                    "img/4 (1).jpg",
-                    "img/3 (1).jpg",
-                    "js/jquery-2.1.0.js",
-                    "img/Left.png",
-                    "img/1 (1).jpg",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "Order-receipt.html" : {
-                "resources" : [
-                    "css/Order-receipt.css",
-                    "img/dd.png",
-                    "img/xiaoxi.png",
-                    "img/1 (1).jpg",
-                    "img/shop.png",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [ "index.html" ],
-                "priority" : 0
-            },
-            "Put-forward.html" : {
-                "resources" : [
-                    "css/Put-forward.css",
-                    "img/Left.png",
-                    "js/jquery-2.1.0.js",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [ "My-wallet.html" ],
-                "priority" : 0
-            },
-            "Alipay.html" : {
-                "resources" : [ "css/Alipay.css" ],
-                "refer" : [ "My-wallet.html" ],
-                "priority" : 0
-            },
-            "wallet.html" : {
-                "resources" : [
-                    "css/wallet.css",
-                    "img/Left.png",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [ "My-wallet.html" ],
-                "priority" : 0
-            },
-            "My-wallet.html" : {
-                "resources" : [
-                    "css/My-wallet.css",
-                    "img/Left.png",
-                    "js/jquery-2.1.0.js",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [
-                    "Put-forward.html",
-                    "Alipay.html",
-                    "wallet.html",
-                    "shop.html",
-                    "Adding-bank.html",
-                    "Pay.html",
-                    "xialashuax-pullrefresh.html",
-                    "shangpinshangxian.html"
-                ],
-                "priority" : 0
-            },
-            "about.html" : {
-                "resources" : [
-                    "js/jquery-2.1.0.js",
-                    "img/Left.png",
-                    "js/mui.js",
-                    "css/about.css",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "Launch.html" : {
-                "resources" : [
-                    "img/htb－Arrow right02.png",
-                    "css/Launch.css",
-                    "img/485263.jpg",
-                    "img/le.png"
-                ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "Advertisement.html" : {
-                "resources" : [
-                    "img/1 (1).jpg",
-                    "css/Advertisement.css",
-                    "img/Left.png",
-                    "js/jquery-2.1.0.js",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [ "Launch.html", "Launch-copy.html", "AdvertiseDetail.html" ],
-                "priority" : 0
-            },
-            "Commodity.html" : {
-                "resources" : [
-                    "css/Commodity.css",
-                    "img/Left.png",
-                    "js/jquery-2.1.0.js",
-                    "img/1 (1).jpg",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "business.html" : {
-                "resources" : [
-                    "css/business.css",
-                    "img/ID.png",
-                    "js/jquery-2.1.0.js",
-                    "img/Back.png",
-                    "js/mui.js",
-                    "img/Addto.png",
-                    "img/right.png",
-                    "img/block-left.png",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [ "zhuce2.html", "Login.html" ],
-                "priority" : 0
-            },
-            "zhuce2.html" : {
-                "resources" : [
-                    "js/jquery-2.1.0.js",
-                    "img/yan.png",
-                    "js/mui.js",
-                    "css/zhuce2.css",
-                    "img/block-left.png",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [ "Login.html" ],
-                "priority" : 0
-            },
-            "Login.html" : {
-                "resources" : [
-                    "css/denglu.css",
-                    "js/jquery-2.1.0.js",
-                    "img/yan.png",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [
-                    "shop.html",
-                    "zhuce2.html",
-                    "home_page.html",
-                    "PhoneLogin.html",
-                    "business.html",
-                    "Authentication.html"
-                ],
-                "priority" : 0
-            },
-            "Adding-bank.html" : {
-                "resources" : [
-                    "css/Adding-bank.css",
-                    "js/mui.picker.js",
-                    "js/mui.poppicker.js",
-                    "js/jquery-2.1.0.js",
-                    "css/mui.poppicker.css",
-                    "js/mui.js",
-                    "css/mui.picker.css",
-                    "img/block-left.png",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [ "My-wallet.html" ],
-                "priority" : 0
-            },
-            "Pay.html" : {
-                "resources" : [
-                    "css/Pay.css",
-                    "js/jquery-2.1.0.js",
-                    "img/Left.png",
-                    "js/mui.js",
-                    "js/rem.js",
-                    "js/dui.js"
-                ],
-                "refer" : [ "My-wallet.html" ],
-                "priority" : 0
-            },
-            "Password.html" : {
-                "resources" : [ "css/Password.css" ],
-                "refer" : [ "personal.html" ],
-                "priority" : 0
-            },
-            "Launch-copy.html" : {
-                "resources" : [
-                    "img/htb－Arrow right02.png",
-                    "img/Addto.png",
-                    "css/Launch-copy.css",
-                    "css/mui.poppicker.css",
-                    "css/mui.picker.css"
-                ],
-                "refer" : [ "Advertisement.html", "guanggao.html" ],
-                "priority" : 0
-            },
-            "home_page.html" : {
-                "resources" : [ "index.html", "img/xiaoxi.png", "shop.html" ],
-                "refer" : [ "Order-receipt.html", "Order_receipt.html", "Login.html" ],
-                "priority" : 0
-            },
-            "PhoneLogin.html" : {
-                "resources" : [],
-                "refer" : [ "business.html" ],
-                "priority" : 0
-            },
-            "Order_receipt.html" : {
-                "resources" : [ "img/1 (1).jpg" ],
-                "refer" : [ "Order_detail.html", "refund.html" ],
-                "priority" : 0
-            },
-            "freight.html" : {
-                "resources" : [],
-                "refer" : [ "newrule.html", "shop.html" ],
-                "priority" : 0
-            },
-            "newrule.html" : {
-                "resources" : [],
-                "refer" : [ "freight.html", "settrule.html", "shop.html" ],
-                "priority" : 0
-            },
-            "settrule.html" : {
-                "resources" : [],
-                "refer" : [ "newrule.html", "freight.html" ],
-                "priority" : 0
-            },
-            "Vip.html" : {
-                "resources" : [],
-                "refer" : [ "MemerDetail.html", "MemberDiscount.html" ],
-                "priority" : 0
-            },
-            "shoping.html" : {
-                "resources" : [ "img/youjian.png", "img/upload.png" ],
-                "refer" : [ "freight.html" ],
-                "priority" : 0
-            },
-            "guanggao.html" : {
-                "resources" : [],
-                "refer" : [ "AdvertiseDetail.html", "Launch-copy.html" ],
-                "priority" : 0
-            }
-        },
-        "idle" : {
-            "resources" : [
-                "css/vip.css",
-                "css/back-copy.css",
-                "css/payment-copy.css",
-                "img/9.jpg",
-                "js/mui.min.js",
-                "Bank.html",
-                "img/xiao  xi.png",
-                "css/refund.css",
-                "receipt-copy.html",
-                "bank-copy.html",
-                "img/2 (2).jpg",
-                "css/receipt-copy.css",
-                "img/6.jpg",
-                "payment-copy.html",
-                "img/no.png",
-                "css/Bank.css",
-                "css/Advertising.css",
-                "img/news.png",
-                "js/vue.js",
-                "Advertising.html",
-                "js/swiper-3.4.2.min.js"
-            ]
-        }
-    },
+		"pages": {
+			"index.html": {
+				"resources": [
+					"img/ding dan.png",
+					"img/485263.jpg",
+					"img/4 (1).jpg",
+					"img/horn.png",
+					"css/main.css",
+					"img/3 (1).jpg",
+					"js/jquery-2.1.0.js",
+					"img/shop.png",
+					"js/mui.js",
+					"img/Truck.png",
+					"js/rem.js",
+					"img/xx.png",
+					"js/dui.js",
+					"img/yes.png",
+					"img/yan.png",
+					"img/timg.jpg"
+				],
+				"refer": [
+					"shop.html",
+					"logistics.html",
+					"Notice.html",
+					"Order-receipt.html",
+					"Login.html"
+				],
+				"priority": 0
+			},
+			"setting.html": {
+				"resources": [
+					"img/Left.png",
+					"img/license.png",
+					"img/right.png",
+					"css/setting.css",
+					"img/3.jpg",
+					"img/Licence.png",
+					"js/jquery-2.1.0.js",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js",
+					"js/city.js",
+					"css/mui.poppicker.css",
+					"js/picker.min.js",
+					"css/mui.picker.css",
+					"js/mui.picker.js",
+					"js/mui.poppicker.js"
+				],
+				"refer": [
+					"personal.html",
+					"shop.html"
+				],
+				"priority": 0
+			},
+			"shop.html": {
+				"resources": [
+					"img/dianpu.png",
+					"css/shop.css",
+					"img/Setup.png",
+					"img/commodity.png",
+					"img/xiaoxi.png",
+					"img/Advertisement.png",
+					"img/about.png",
+					"img/Complaint.png",
+					"img/Customer.png",
+					"img/wallet.png",
+					"img/ding dan.png",
+					"img/485263.jpg",
+					"js/jquery-2.1.0.js",
+					"js/rem.js",
+					"js/dui.js",
+					"js/mui.js",
+					"img/width.jpg"
+				],
+				"refer": [
+					"setting.html",
+					"Administration.html",
+					"My-wallet.html",
+					"about.html",
+					"personal.html",
+					"Advertisement.html",
+					"Commodity.html",
+					"Order-receipt.html",
+					"index.html",
+					"business.html",
+					"Login.html",
+					"freight.html",
+					"Vip.html",
+					"MemberAudit.html",
+					"shoping.html",
+					"guanggao.html"
+				],
+				"priority": 0
+			},
+			"personal.html": {
+				"resources": [
+					"css/personal.css",
+					"img/Left.png"
+				],
+				"refer": [
+					"Name.html",
+					"Password.html",
+					"shop.html"
+				],
+				"priority": 0
+			},
+			"Name.html": {
+				"resources": [
+					"css/Name.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"logistics.html": {
+				"resources": [
+					"img/1 (1).jpg",
+					"css/logistics.css",
+					"img/Left.png"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"Notice.html": {
+				"resources": [
+					"css/Notice.css",
+					"img/Left.png",
+					"img/left.png"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"Administration.html": {
+				"resources": [
+					"css/Administration.css"
+				],
+				"refer": [
+					"Complaint.html"
+				],
+				"priority": 0
+			},
+			"Complaint.html": {
+				"resources": [
+					"img/6 (1).jpg",
+					"img/5 (1).jpg",
+					"css/Complaint.css",
+					"img/4 (1).jpg",
+					"img/3 (1).jpg",
+					"js/jquery-2.1.0.js",
+					"img/Left.png",
+					"img/1 (1).jpg",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"Order-receipt.html": {
+				"resources": [
+					"css/Order-receipt.css",
+					"img/dd.png",
+					"img/xiaoxi.png",
+					"img/1 (1).jpg",
+					"img/shop.png",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"Put-forward.html": {
+				"resources": [
+					"css/Put-forward.css",
+					"img/Left.png",
+					"js/jquery-2.1.0.js",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"My-wallet.html"
+				],
+				"priority": 0
+			},
+			"Alipay.html": {
+				"resources": [
+					"css/Alipay.css"
+				],
+				"refer": [
+					"My-wallet.html"
+				],
+				"priority": 0
+			},
+			"wallet.html": {
+				"resources": [
+					"css/wallet.css",
+					"img/Left.png",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"My-wallet.html"
+				],
+				"priority": 0
+			},
+			"My-wallet.html": {
+				"resources": [
+					"css/My-wallet.css",
+					"img/Left.png",
+					"js/jquery-2.1.0.js",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"Put-forward.html",
+					"Alipay.html",
+					"wallet.html",
+					"shop.html",
+					"Adding-bank.html",
+					"Pay.html",
+					"xialashuax-pullrefresh.html",
+					"shangpinshangxian.html"
+				],
+				"priority": 0
+			},
+			"about.html": {
+				"resources": [
+					"js/jquery-2.1.0.js",
+					"img/Left.png",
+					"js/mui.js",
+					"css/about.css",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"Launch.html": {
+				"resources": [
+					"img/htb－Arrow right02.png",
+					"css/Launch.css",
+					"img/485263.jpg",
+					"img/le.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"Advertisement.html": {
+				"resources": [
+					"img/1 (1).jpg",
+					"css/Advertisement.css",
+					"img/Left.png",
+					"js/jquery-2.1.0.js",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"Launch.html",
+					"Launch-copy.html",
+					"AdvertiseDetail.html"
+				],
+				"priority": 0
+			},
+			"Commodity.html": {
+				"resources": [
+					"css/Commodity.css",
+					"img/Left.png",
+					"js/jquery-2.1.0.js",
+					"img/1 (1).jpg",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"business.html": {
+				"resources": [
+					"css/business.css",
+					"img/ID.png",
+					"js/jquery-2.1.0.js",
+					"img/Back.png",
+					"js/mui.js",
+					"img/Addto.png",
+					"img/right.png",
+					"img/block-left.png",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"zhuce2.html",
+					"Login.html"
+				],
+				"priority": 0
+			},
+			"zhuce2.html": {
+				"resources": [
+					"js/jquery-2.1.0.js",
+					"img/yan.png",
+					"js/mui.js",
+					"css/zhuce2.css",
+					"img/block-left.png",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"Login.html"
+				],
+				"priority": 0
+			},
+			"Login.html": {
+				"resources": [
+					"css/denglu.css",
+					"js/jquery-2.1.0.js",
+					"img/yan.png",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"shop.html",
+					"zhuce2.html",
+					"home_page.html",
+					"PhoneLogin.html",
+					"business.html",
+					"Authentication.html"
+				],
+				"priority": 0
+			},
+			"Adding-bank.html": {
+				"resources": [
+					"css/Adding-bank.css",
+					"js/mui.picker.js",
+					"js/mui.poppicker.js",
+					"js/jquery-2.1.0.js",
+					"css/mui.poppicker.css",
+					"js/mui.js",
+					"css/mui.picker.css",
+					"img/block-left.png",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"My-wallet.html"
+				],
+				"priority": 0
+			},
+			"Pay.html": {
+				"resources": [
+					"css/Pay.css",
+					"js/jquery-2.1.0.js",
+					"img/Left.png",
+					"js/mui.js",
+					"js/rem.js",
+					"js/dui.js"
+				],
+				"refer": [
+					"My-wallet.html"
+				],
+				"priority": 0
+			},
+			"Password.html": {
+				"resources": [
+					"css/Password.css"
+				],
+				"refer": [
+					"personal.html"
+				],
+				"priority": 0
+			},
+			"Launch-copy.html": {
+				"resources": [
+					"img/htb－Arrow right02.png",
+					"img/Addto.png",
+					"css/Launch-copy.css",
+					"css/mui.poppicker.css",
+					"css/mui.picker.css"
+				],
+				"refer": [
+					"Advertisement.html",
+					"guanggao.html"
+				],
+				"priority": 0
+			},
+			"home_page.html": {
+				"resources": [
+					"index.html",
+					"img/xiaoxi.png",
+					"shop.html",
+					"Order_receipt.html"
+				],
+				"refer": [
+					"Order-receipt.html",
+					"Login.html"
+				],
+				"priority": 0
+			},
+			"PhoneLogin.html": {
+				"resources": [],
+				"refer": [
+					"business.html"
+				],
+				"priority": 0
+			},
+			"Order_receipt.html": {
+				"resources": [
+					"img/1 (1).jpg"
+				],
+				"refer": [
+					"Order_detail.html",
+					"refund.html"
+				],
+				"priority": 0
+			},
+			"freight.html": {
+				"resources": [],
+				"refer": [
+					"newrule.html",
+					"shop.html"
+				],
+				"priority": 0
+			},
+			"newrule.html": {
+				"resources": [],
+				"refer": [
+					"freight.html",
+					"settrule.html",
+					"shop.html"
+				],
+				"priority": 0
+			},
+			"settrule.html": {
+				"resources": [],
+				"refer": [
+					"newrule.html",
+					"freight.html"
+				],
+				"priority": 0
+			},
+			"Vip.html": {
+				"resources": [],
+				"refer": [
+					"MemerDetail.html",
+					"MemberDiscount.html"
+				],
+				"priority": 0
+			},
+			"shoping.html": {
+				"resources": [
+					"img/youjian.png",
+					"img/upload.png"
+				],
+				"refer": [
+					"freight.html"
+				],
+				"priority": 0
+			},
+			"guanggao.html": {
+				"resources": [],
+				"refer": [
+					"AdvertiseDetail.html",
+					"Launch-copy.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"css/vip.css",
+				"css/back-copy.css",
+				"css/payment-copy.css",
+				"img/9.jpg",
+				"js/mui.min.js",
+				"Bank.html",
+				"img/xiao  xi.png",
+				"css/refund.css",
+				"receipt-copy.html",
+				"bank-copy.html",
+				"img/2 (2).jpg",
+				"css/receipt-copy.css",
+				"img/6.jpg",
+				"payment-copy.html",
+				"img/no.png",
+				"css/Bank.css",
+				"css/Advertising.css",
+				"img/news.png",
+				"js/vue.js",
+				"Advertising.html",
+				"js/swiper-3.4.2.min.js"
+			]
+		}
+	},
     "fullscreen" : false
 }

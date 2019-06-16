@@ -86,38 +86,59 @@
 		<script type="text/javascript">
 
 			$(function() {
-				//               富文本初始化
-				var editor = new ___E('textarea1');
-				editor.init();
-				editor.config.uploadImgUrl = url_url + '/merchant/uploads';
-				//  添加商品
-				$('.btn').click(function() {
-					var smMerchantId = localStorage.getItem('smMerchantId');
-					//富文本 内容
-					var $txt = editor.$txt;
-					var smCoResult = $txt.html()
-					$.ajax({
-						type: "post",
-						url: url_url + "/merchant/updateMerchantIntroduce",
-						async: true,
-						data: {
-							smMerchantId:smMerchantId,
-							smMeIntroduce: smCoResult
-						},
-						success: function(res) {
-							if(res.status == 200) {
-								mui.toast('添加成功')
-								mui.back()
-							} else {
-								alert(res.msg)
-							}
-						},
-						error: function(err) {
-							alert(JSON.stringify(err))
+				$.ajax({
+					type: "post",
+					url: url_url + "/user/selectSmMerchantId",
+					async: true,
+					dataType: 'json',
+					data: {
+						smMerchantId: localStorage.getItem('smMerchantId'),
+						smUserId: ''
+					},
+					success: function(res) {
+						if(res.status == 200) {
+							//               富文本初始化
+							var editor = new ___E('textarea1');
+							editor.init();
+							editor.config.uploadImgUrl = url_url + '/merchant/uploads';
+							editor.$txt.html(res.data.smMeIntroduce)
+							//  添加商品
+							$('.btn').click(function() {
+								var smMerchantId = localStorage.getItem('smMerchantId');
+								//富文本 内容
+								var $txt = editor.$txt;
+								var smCoResult = $txt.html()
+								$.ajax({
+									type: "post",
+									url: url_url + "/merchant/updateMerchantIntroduce",
+									async: true,
+									data: {
+										smMerchantId:smMerchantId,
+										smMeIntroduce: smCoResult
+									},
+									success: function(res) {
+										if(res.status == 200) {
+											mui.toast('添加成功')
+											mui.back()
+										} else {
+											alert(res.msg)
+										}
+									},
+									error: function(err) {
+										alert(JSON.stringify(err))
+									}
+								});
+							
+							})
+						} else {
+							alert(res.msg)
 						}
-					});
-
-				})
+					},
+					error: function(err) {
+						alert("网络连接失败，请稍后重试")
+					}
+				});
+				
 
 			})
 		</script>

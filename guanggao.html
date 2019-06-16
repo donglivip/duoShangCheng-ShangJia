@@ -58,6 +58,23 @@
 		<script src="js/url.js"></script>
 		<script type="text/javascript">
 			$(function() {
+				$.ajax({
+					type: "post",
+					url: url_url + "/user/selectMerchantCount",
+					async: true,
+					data: {
+						'smMerchantId': localStorage.getItem('smMerchantId')
+					},
+					success: function(res) {
+						if(localStorage.getItem('smMeMortgagePrice') == -1 || localStorage.getItem('smMeMortgagePrice') == '-1') {
+							alert('您还没有缴纳租金或者保证金')
+							mui.openWindow('My-wallet.html','My-wallet')
+						}
+					},
+					error: function(err) {
+						console.log(err)
+					}
+				});
 				ADstatus(1, '#putingView');
 				$('.mui-control-content').css('height', $('.main').css('height'));
 				document.getElementById('puting').addEventListener('tap', function() {

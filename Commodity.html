@@ -197,10 +197,11 @@
 				                 	</div>
 				                 </section>`
 								};
+								res.data[i].smCoDefaultImg=JSON.parse(res.data[i].smCoDefaultImg)
 								goodsHtml +=
 									`<section class="Commodity-item">
 				                 	<div class="item-detail">
-				                 		<img src="${res.data[i].smCoDefaultImg}" alt="" />
+				                 		<img src="${res.data[i].smCoDefaultImg[0]}" alt="" />
 				                 		<div>
 				                 			<p>${res.data[i].smCoName}</p>
 				                 			<p>创建时间：<span>${creatDate}</span></p>

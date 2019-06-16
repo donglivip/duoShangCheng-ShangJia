@@ -74,7 +74,7 @@
 					</div>
 					<textarea class="title title02" placeholder="请输入商品标题" maxlength="60"></textarea>
 					<div class="shop-top">
-						<span><strong>* </strong>商品图片</span>
+						<span><strong>* </strong>商品图片 <small>(单击图片可取消已上传图片)</small></span>
 						<span class="title-lengt"></span>
 					</div>
 					<div class="img-box">
@@ -93,20 +93,7 @@
 						<label for="" style="flex: 1;"> <small>规格类型</small>尺寸</label>
 						<img src="img/you-hui.png" />
 					</div>-->
-					<div class="gui-box specWrap">
-						<div class="gui-tab">
-							<div class="gui-title">
-								名称
-							</div>
-							<input type="text" placeholder="请输入名称" />
-						</div>
-						<div class="gui-tab">
-							<div class="gui-title">
-								单价
-							</div>
-							<input type="text" placeholder="请输入单价" />
-						</div>
-					</div>
+					
 					<div class="gui-add specAdd">
 						<img src="img/add.png" /> 添加规格
 					</div>
@@ -120,19 +107,7 @@
 						<img src="img/you-hui.png" />
 					</div>-->
 					<div class="gui-box parameter">
-						<div class="gui-tab">
-							<div class="gui-title">
-								品牌
-							</div>
-							<input type="text" class="val" placeholder="请输入品牌" />
-						</div>
-						<!--<div class="gui-tab">
-							<div class="gui-title">
-								颜色
-							</div>
-							<input type="text" class="val" placeholder="请输入颜色" />
-						</div>-->
-
+						
 					</div>
 					<div class="gui-add parameterBtn">
 						<img src="img/add.png" /> 添加参数
@@ -143,13 +118,6 @@
 						<label for="">颜色</label>
 					</div>
 					<div class="gui-box yanse">
-						<div class="gui-tab">
-							<div class="gui-title">
-								颜色
-							</div>
-							<input type="text" class="yanval" placeholder="请输入颜色" />
-						</div>
-				
 					</div>
 					<div class="gui-add addyan">
 						<img src="img/add.png" /> 添加颜色
@@ -187,60 +155,138 @@
 		<script src="js/url.js"></script>
 		<script src="js/wangEditor-mobile.js"></script>
 		
-		<script src="js/upload.js"></script>
+		<script src="js/upload01.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			//判断是否 设置运费模版  
-			var smMerchantId = localStorage.getItem('smMerchantId'),
-			imglist=[],
-			smCoColour=[]
-			
-			$.ajax({
-				type: "post",
-				url: url_url + '/merchant/queryExpressCount',
-				async: true,
-				data: {
-					smMerchantId: smMerchantId
-				},
-				success: function(res) {
-					
-					if(!res.data) {
-						mui.alert('请先设置运费模板', function() {
-							mui.openWindow('freight.html')
-						})
-					}
-				},
-				error: function(err) {
 
-				}
-			});
-			// 获取分类
-			$.ajax({
-				type: "post",
-				url: url_url + "/merchant/querySmCommodityType",
-				async: true,
-				data: {
-					'smMerchantId': smMerchantId
-				},
-				success: function(res) {
-					var typeHtml = ''
-					if(res.data.length == 0 || res.data == null) {
-						alert('请先添加分类')
-					} else {
-						for(i in res.data) {
-							$('#TypeOne').append(`
-								<option value=${res.data[i].smCommodityTypeId}>${res.data[i].smCtResult}</option>
+				var editor = new ___E('textarea1');
+				editor.init();
+				editor.config.uploadImgUrl = url_url + '/merchant/uploads';
+				//判断是否 设置运费模版  
+				var smMerchantId = localStorage.getItem('smMerchantId'),
+				imglist=[],
+				smCoColour=[],
+				fendata=[],
+				neirong=''
+				// 删除图片
+				$('.img-box').on('click','img',function(){
+					var index=$(this).index()
+					if(index>0){
+						imglist.splice(index-1,1)
+						$('.img-box img').eq(index).remove()
+					}
+				})
+				$.ajax({
+					type: "post",
+					url: url_url + '/merchant/queryExpressCount',
+					async: true,
+					data: {
+						smMerchantId: smMerchantId
+					},
+					success: function(res) {
+						
+						if(!res.data) {
+							mui.alert('请先设置运费模板', function() {
+								mui.openWindow('freight.html')
+							})
+						}
+					}
+				});
+				// 获取分类
+				$.ajax({
+					type: "post",
+					url: url_url + "/merchant/querySmCommodityType",
+					async: true,
+					data: {
+						'smMerchantId': smMerchantId
+					},
+					success: function(res) {
+						var typeHtml = ''
+						if(res.data.length == 0 || res.data == null) {
+							alert('请先添加分类')
+						} else {
+							fendata=res.data
+							for(i in res.data) {
+								$('#TypeOne').append(`
+									<option value=${res.data[i].smCommodityTypeId}>${res.data[i].smCtResult}</option>
+								`)
+							}
+						}
+					}
+				});
+				<!-- // 获取详情回显 -->
+				$.ajax({
+					type: "post",
+					url: url_url + "/merchant/querySmCommodity",
+					async: true,
+					data: {
+						smCommodityId: localStorage.getItem('shangpinid')
+					},
+					success: function(res) {
+						$('.title01').html(res.data.smCoActivity)
+						$('.title02').html(res.data.smCoName)
+						if(res.data.smCoResult!=null){
+							editor.$txt.html(res.data.smCoResult)
+						}
+						$('#price').val(res.data.smCoDefaultPrice)
+						$('#stock').val(res.data.smCoStock)
+						for (i in fendata) {
+							if(fendata[i].smCommodityTypeId==res.data.smCommodityTypeId){
+								$('option').eq(i).click()
+							}
+						}
+						<!-- 颜色回显 -->
+						var ydata=JSON.parse(res.data.smCoColour)
+						for (i in ydata) {
+							$('.yanse').append(`
+								<div class="gui-tab">
+									<div class="gui-title">
+										颜色
+									</div>
+									<input type="text" class="yanval" placeholder="请输入颜色" value='${ydata[i]}'>
+								</div>
 							`)
 						}
-						
+						<!-- 规格回显 -->
+						var gdata=JSON.parse(res.data.smCoFarmat)
+						Object.keys(gdata).forEach(function(key){
+							$('.specAdd').before(`
+								<div class="gui-box specWrap">
+									<div class="gui-tab">
+										<div class="gui-title">
+											名称
+										</div>
+										<input type="text" placeholder="请输入名称" value='${key}'/>
+									</div>
+									<div class="gui-tab">
+										<div class="gui-title">
+											单价
+										</div>
+										<input type="text" placeholder="请输入单价"  value='${gdata[key]}'/>
+									</div>
+								</div>
+							`)
+						});
+						<!-- 品牌回显 -->
+						var pdata=JSON.parse(res.data.smCoParameter)
+						Object.keys(pdata).forEach(function(key){
+							$('.parameter').append(`
+								<div class="gui-tab">
+									<div class="gui-title">
+										<input type="text" class="paraKey" placeholder="输入参数" value='${key}'/>
+									</div>
+									<input type="text" class="val" placeholder="请输入品牌" value='${pdata[key]}'>
+								</div>
+							`)
+						});
+						<!-- banner回显 -->
+						imglist=JSON.parse(res.data.smCoDefaultImg)
+						for (i in imglist) {
+							$('.img-box').append(`
+								<img src="${imglist[i]}"/>
+							`)
+						}
 					}
-
-				},
-				error: function(err) {
-
-				}
-			});
-
-			$(function() {
+				});
 				$('.addyan').click(function(){
 					$('.yanse').append(`
 						<div class="gui-tab">
@@ -251,11 +297,6 @@
 						</div>
 					`)
 				})
-				//               富文本初始化
-				var editor = new ___E('textarea1');
-				editor.init();
-				editor.config.uploadImgUrl = url_url + '/merchant/uploads';
-				
 				$('.specAdd').click(function() {
 					var guiList =
 						`
@@ -275,7 +316,6 @@
 
 					$('.specWrap').append(guiList);
 				});
-
 				$('.parameterBtn').click(function() {
 					var guiList =
 						`
@@ -332,25 +372,11 @@
 					//参数
 					var keyArr = new Array();
 					var valArr = new Array();
-					$('.parameter .gui-title').each(function() {
-						if($(this).text().trim() == '') {
-							flag = false;
-							alert('请将参数输入完整');
-							return false
-						} else {
-							flag = true;
-							keyArr.push($(this).text().trim())
-						}
-
-					});
-					if(!flag) {
-						return false;
-					}
 
 					$('.parameter .paraKey').each(function() {
 						if($(this).val() == '') {
 							flag = false;
-							alert('请将参数输入完整');
+							alert('参数名称不能为空');
 							return false
 						} else {
 							flag = true;
@@ -364,7 +390,7 @@
 					$('.parameter .val').each(function() {
 						if($(this).val() == '') {
 							flag = false;
-							alert('请将参数输入完整');
+							alert('参数内容不能为空');
 							return false
 						} else {
 							flag = true;
@@ -484,8 +510,6 @@
 					});
 
 				})
-
-			})
 		</script>
 	</body>
 

@@ -12,7 +12,12 @@
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/my.css"/>
 	</head>
-
+	<style>
+		.main-left{
+			width: 2rem;height: 2rem;
+		}
+		.main-left img{height: 100%;width: 100%;}
+	</style>
 	<body>
 		<div class="wrapper">
 			<div class="header">
@@ -56,6 +61,7 @@
 		</div>
 
 		<script src="js/url.js"></script>
+		<script src="js/upload04.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function() {
 				$.ajax({
@@ -126,8 +132,8 @@
 									<div class="main-box" data-id=${adlist[i].smAdvertisementMiddleId} data-type=${adlist[i].smAmType}>
 										<div class="main-tab">
 											<div class="main-left">
-												<img src=${adlist[i].picture} style="display:${adlist[i].picture.state==1?'block':'none'}"/>
-												<img src=${url_url + adlist[i].picture} style="display:${adlist[i].picture.state==2?'block':'none'}"/>
+												<img src=${adlist[i].picture} style="display:${adlist[i].state==1?'block':'none'}"/>
+												<img src=${url_url + adlist[i].picture} style="display:${adlist[i].state==2?'block':'none'}" class='xiulun' myname='${adlist[i].name}' myid='${adlist[i].smAdvertisementMiddleId}'/>
 											</div>
 											<div class="main-right">
 												<div class="main-upper">
@@ -165,6 +171,9 @@
 						alert( "获取支付通道列表失败："+e.message );
 					});
 				}, false );
+				mui('body').on('tap', '.xiulun', function() {
+					$(this).upload('/merchant/insertCommodityImage');
+				})	
 				mui('body').on('tap', '.jia', function() {
 					var myid=$(this).attr('myid')
 					 mui.prompt('请输入价格','请输入增加价格','广告加价',['取消','支付宝','微信','余额'],function (e) {

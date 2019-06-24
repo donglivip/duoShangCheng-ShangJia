@@ -54,6 +54,12 @@
 			});
 			function plusReady() {
 				plus.navigator.setStatusBarBackground('#F55353');
+				if(localStorage.getItem('smMerchantId')==null||localStorage.getItem('smMerchantId')==undefined){
+					mui.openWindow({
+						url:'Login.html',
+						id:'Login'
+					})
+				}
 				window.addEventListener('homeReady', function() {
 					var view = plus.webview.getWebviewById('index.html');
 					view.show();

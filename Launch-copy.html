@@ -54,10 +54,10 @@
 							<option value="">行业分类</option>
 							<option :value="val.smShopTypeId" v-for="(val,index) in yijidata">{{val.smStName}}</option>
 						</select>
-<!-- 						<select v-model="erjiid" @click="haverule(4)">
+						<select v-model="erjiid" @click="haverule(4)">
 							<option value="">产品分类</option>
 							<option :value="val.smShopTypeId" v-for="(val,index) in erjidata">{{val.smStName}}</option>
-						</select> -->
+						</select>
 						<select v-model="diquid" @change='diquchange'>
 							<option value="">地区分类</option>
 							<option :value="val.smAdvertisementAddressId" v-for="(val,index) in diqudata">{{val.smAaProvice}}{{val.smAaCity}}{{val.smAaArea}}</option>

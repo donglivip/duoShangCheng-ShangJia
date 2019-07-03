@@ -207,9 +207,9 @@
                 "android" : {
                     "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
                     "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
-                    "hdpi" : "logo/Artboard(1).png", /*高分屏启动图片，分辨率：480x762*/
-                    "xhdpi" : "logo/Artboard(1).png", /*720P高分屏启动图片，分辨率：720x1242*/
-                    "xxhdpi" : "logo/Artboard(1).png"
+                    "hdpi" : "logo/qidong.png", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : "logo/qidong.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : "logo/qidong.png"
                 }
             },
             "debug" : true

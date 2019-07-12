@@ -151,6 +151,12 @@
 								</div>` + footBtn;
 							}
 							$(ele).append(memberHtml);
+							$('.mui-content').on('click','img',function(){
+								var src=$(this).attr('src')
+								plus.nativeUI.previewImage([
+									src
+								]);
+							})
 						},
 						error: function(err) {
 							console.log(err);

@@ -132,6 +132,10 @@
 						    </div>
 							<section class="main-footer">
 								<p class="footer-title">订单信息</p>
+								<div >
+									<p>收货地址:</p>
+									<p>${order.smOrAddress}</p>
+								</div>
 								<div>
 									<p>下单时间:</p>
 									<p>${order.smOdCreateTimeString}</p>
@@ -140,9 +144,9 @@
 									<p>发货时间:</p>
 									<p>${order.smOrExpressTimeString}</p>
 								</div>
-								<div>
+								<div >
 									<p>快递编号:</p>
-									<p>${order.smOrExpress}</p>
+									<p>${order.smOrExpress==null?'':order.smOrExpress}</p>
 								</div>
 								<div>
 									<p>评价星级:</p>

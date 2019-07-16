@@ -52,7 +52,6 @@
 			
 			.main-footer div {
 				display: flex;
-				align-items: center;
 				justify-content: space-between;
 			}
 			
@@ -60,7 +59,9 @@
 				color: #9c9c9c;
 				font-size: 0.32rem;
 			}
-			
+			.main-footer p:first-of-type{
+				width: 1.5rem;
+			}
 			.footer-title {
 				margin-bottom: 0.2rem;
 				color: #333333 !important;
@@ -88,9 +89,10 @@
 					dataType: 'json',
 					async: true,
 					data: {
-						'smOrderId': value
+						'smOrderId':value
 					},
 					success: function(res) {
+						console.log("res: " + JSON.stringify(res));
 						var order = res.data[0];
 						var _detailMain = '';
 						var _detailHeader = `<div class="main-tab">
@@ -135,6 +137,14 @@
 								<div >
 									<p>收货地址:</p>
 									<p>${order.smOrAddress}</p>
+								</div>
+								<div >
+									<p>收货人:</p>
+									<p>${order.smOrName}</p>
+								</div>
+								<div >
+									<p>收货电话:</p>
+									<p>${order.smOrPhone}</p>
 								</div>
 								<div>
 									<p>下单时间:</p>

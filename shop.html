@@ -16,9 +16,6 @@
 			<div class="header">
 				<div class="header-container">
 					<div class="header-box">
-						<!--<div class="header-aside" id="certification" style="margin-left:15px;">商家认证</div>
-						<div class="header-content" id="btn">点匠文化专卖店</div>
-						<div class="header-aside" id="certifi">退出登录</div>-->
 						<p style=" font-size: 0.34rem;height: 0.68rem;"></p>
 					</div>
 					<div class="header-bottom">
@@ -27,7 +24,6 @@
 						</div>
 						<div class="header-right">
 							<div class="header-text">XXXXXX</div>
-							<!--<div class="header-text" style=" font-size: 0.28rem;">xxxxxxxxxxxxxxxxx</div>-->
 						</div>
 						<div></div>
 					</div>
@@ -74,14 +70,10 @@
 					<i class="iconfont icon-kuaidihuoyun" style="margin-left: 0.25rem;margin-top: 0;"></i>
 					<div class="main-classification">运费设置</div>
 				</div>
-				<!--<div class="main-tips">
-					<img src="img/about.png" />
-					<div class="main-classification">关于我们</div>
-				</div>-->
-				<a class="main-tips" href='http://wpa.qq.com/msgrd?v=3&uin=2228636548&site=qq&menu=yes'>
+				<div class="main-tips" onclick='plus.runtime.openWeb("http://wpa.qq.com/msgrd?v=3&uin=2228636548&site=qq&menu=yes")'>
 					<img src="img/Customer.png" />
 					<div class="main-classification">官方客服</div>
-				</a>
+				</div>
 				<div class="main-tips">
 					<img src="img/commodity.png" >
 					<div class="main-classification">分类管理</div>
@@ -175,7 +167,7 @@
 
 			//关于我们
 			main_tips[2].addEventListener("tap", function() {
-				dui.jump("about.html", "about");
+				// dui.jump("about.html", "about");
 			})
 
 			//分类管理

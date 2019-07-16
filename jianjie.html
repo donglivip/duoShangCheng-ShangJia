@@ -101,7 +101,9 @@
 							var editor = new ___E('textarea1');
 							editor.init();
 							editor.config.uploadImgUrl = url_url + '/merchant/uploads';
-							editor.$txt.html(res.data.smMeIntroduce)
+							if(res.data.smMeIntroduce!=''&&res.data.smMeIntroduce!=null){
+								editor.$txt.html(res.data.smMeIntroduce)
+							}
 							//  添加商品
 							$('.btn').click(function() {
 								var smMerchantId = localStorage.getItem('smMerchantId');

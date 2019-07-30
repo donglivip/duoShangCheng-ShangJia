@@ -28,6 +28,7 @@ small{font-size: .2rem;margin-right: .3rem;}
     display: flex;
     align-items: center;
 }
+.guigeimg{height: .8rem;}
 .gui-tab input{flex: 1;background: none;border: 0;outline: 0;}
 .gui-tab input::placeholder{color: #999999;}
 .gui-add{color: #FC4149;display: flex;align-items: center;justify-content: center;background: rgba(0,0,0,.1);height: .8rem;margin: .25rem .4rem;border-radius: .1rem;}

@@ -106,6 +106,12 @@
 							</div>
 							<input type="text" placeholder="请输入单价" />
 						</div>
+						<div class="gui-tab">
+							<div class="gui-title">
+								规格图片
+							</div>
+							<img src="img/add.png" class="guigeimg"/>
+						</div>
 					</div>
 					<div class="gui-add specAdd">
 						<img src="img/add.png" /> 添加规格
@@ -186,8 +192,8 @@
 		<script src="js/zepto.touch.js"></script>
 		<script src="js/url.js"></script>
 		<script src="js/wangEditor-mobile.js"></script>
-		
 		<script src="js/upload01.js"></script>
+		<script src="upload04.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			//判断是否 设置运费模版  
 			var smMerchantId = localStorage.getItem('smMerchantId'),
@@ -266,11 +272,12 @@
 				$('.specAdd').click(function() {
 					var guiList =
 						`
+					<div class='gui-box specWrap'>
 					<div class="gui-tab">
-							<div class="gui-title">
-								名称
-							</div>
-							<input type="text" placeholder="请输入名称" />
+						<div class="gui-title">
+							名称
+						</div>
+						<input type="text" placeholder="请输入名称" />
 						</div>
 						<div class="gui-tab">
 							<div class="gui-title">
@@ -278,11 +285,21 @@
 							</div>
 							<input type="text" placeholder="请输入单价" />
 						</div>
+						<div class="gui-tab">
+							<div class="gui-title">
+								规格图片
+							</div>
+							<img src="img/add.png" class="guigeimg"/>
+						</div>
+					</div>
 					`;
 
-					$('.specWrap').append(guiList);
+					$('.specWrap').last().after(guiList);
 				});
-
+//				点击上传规格图片
+				$('body').on('click','.guigeimg',function(){
+					$(this).upload04('/merchant/insertCommodityImage');
+				})
 				$('.parameterBtn').click(function() {
 					var guiList =
 						`
@@ -312,21 +329,20 @@
 					var smMerchantId = localStorage.getItem('smMerchantId');
 					//规格
 					var numArr = new Array();
-					var flag = true;
-					$('.specWrap input').each(function() {
-						if($(this).val() == '') {
-							flag = false;
-							alert('请将规格输入完整');
-							return false
-						} else {
-							flag = true;
-							numArr.push($(this).val()); //添加至数组
+					for (var i=0;i<$('.specWrap').length;i++) {
+						if($('.specWrap:eq('+i+') input:eq(0)').val()==''||$('.specWrap:eq('+i+') input:eq(1)').val()==''){
+							alert('参数不完整')
+							return false;
+						}else{
+							if($('.specWrap:eq('+i+') img').attr('src')=='img/add.png'){
+								numArr.push($('.specWrap:eq('+i+') input:eq(0)').val())
+							}else{
+								numArr.push($('.specWrap:eq('+i+') input:eq(0)').val() +'-'+$('.specWrap:eq('+i+') img').attr('src'))
+							}
+							numArr.push($('.specWrap:eq('+i+') input:eq(1)').val())
 						}
-					});
-
-					if(!flag) {
-						return false;
 					}
+					
 					var guige = {}
 					for(var i in numArr) {
 						if(i % 2 == 0) {
@@ -335,7 +351,6 @@
 							guige[key] = value;
 						}
 					}
-					console.log(guige)
 					//参数
 					var keyArr = new Array();
 					var valArr = new Array();

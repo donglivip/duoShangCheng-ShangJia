@@ -54,7 +54,7 @@
 							<option value="">行业分类</option>
 							<option :value="val.smShopTypeId" v-for="(val,index) in yijidata">{{val.smStName}}</option>
 						</select>
-						<select v-model="erjiid" @click="haverule(4)">
+						<select v-model="erjiid" @change="erjichange">
 							<option value="">产品分类</option>
 							<option :value="val.smShopTypeId" v-for="(val,index) in erjidata">{{val.smStName}}</option>
 						</select>
@@ -178,7 +178,28 @@
 						},
 						success: function(res) {
 							that.erjidata = res.data
+							that.diqudata=[]
 							that.haverule(3)
+						},
+						error: function(res) {
+
+						}
+					})
+				},
+				erjichange:function(){
+					// 二级改变查询地区
+					var that = this
+					$.ajax({
+						type: "POST",
+						url: url_url + "/user/selectSmAdvertisementAddress",
+						dataType: 'json',
+						async: true,
+						data:{
+							id:that.erjiid
+						},
+						success: function(res) {
+							that.diqudata = res.data
+							that.haverule(4)
 						},
 						error: function(res) {
 
@@ -394,19 +415,7 @@
 
 						}
 					})
-					// 					查询地址 
-					$.ajax({
-						type: "POST",
-						url: url_url + "/user/selectSmAdvertisementAddress",
-						dataType: 'json',
-						async: true,
-						success: function(res) {
-							that.diqudata = res.data
-						},
-						error: function(res) {
-
-						}
-					})
+					
 				},
 				upload: function(type, smAcPrice, smAcTime, smAdvertisementRuleId, smAdvertisementType) {
 					var that = this

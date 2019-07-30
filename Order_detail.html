@@ -81,8 +81,8 @@
 		<script src="js/mui.js"></script>
 		<script src="js/url.js"></script>
 		<script type="text/javascript">
-			mui.plusReady(function() {
-				var value = plus.webview.currentWebview().Order_Id;
+			 mui.plusReady(function() {
+			 	var value = plus.webview.currentWebview().Order_Id;
 				$.ajax({
 					type: "POST",
 					url: url_url + "/merchant/queryDetailOrder",
@@ -101,9 +101,10 @@
 								</div>`
 								
 							for(var i =0;i<res.data.length;i++){
+								var img=JSON.parse(res.data[i].smCoDefaultImg)
 							    _detailMain += `<div class="main-Photo">
 									<div class="main-left">
-										<img src="${res.data[i].smCoDefaultImg}" />
+										<img src="${img[0]}" />
 										</div>
 										<div class="main-right">
 											<div class="main-upper">
@@ -146,6 +147,10 @@
 									<p>收货电话:</p>
 									<p>${order.smOrPhone}</p>
 								</div>
+								<div >
+									<p>发货物流:</p>
+									<p>${order.smSulName}</p>
+								</div>
 								<div>
 									<p>下单时间:</p>
 									<p>${order.smOdCreateTimeString}</p>
@@ -170,7 +175,7 @@
 						mui.toast('请求失败');
 					}
 				})
-			})
+			 })
 		</script>
 	</body>
 

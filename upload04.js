@@ -1,7 +1,7 @@
 (function($) { //($)防止$冲突
 	$.fn.extend({ //jquery方法
 		       
-		　　　　　upload:function (myUrl) {
+		　　　　　upload04:function (myUrl) {
 			    
 				var that = this
 				var btnArray = [{
@@ -17,15 +17,15 @@
 					var index = e.index;
 					switch(index) {
 						case 1:
-							that.camera(myUrl);
+							that.camera04(myUrl);
 							break;
 						case 2:
-							that.album(myUrl);
+							that.album04(myUrl);
 							break;
 					}
 				});
 			},
-			camera:function (myUrl) {
+			camera04:function (myUrl) {
 				//				相机
 				var that = this
 				var cmr = plus.camera.getCamera();
@@ -36,7 +36,7 @@
 						var img_path = entry.toLocalURL();
 						//						that.upsrc = img_path
 						that.upimg = !that.upimg
-						that.upload_img(img_path,myUrl)
+						that.upload_img04(img_path,myUrl)
 					}, function(e) {
 						alert("读取拍照文件错误：" + e.message);
 					});
@@ -48,20 +48,20 @@
 					index: 1
 				});
 			},
-			album:function (myUrl) {
+			album04:function (myUrl) {
 				//				相册
 				var that = this
 				plus.gallery.pick(function(path) {
 					//					that.upsrc = path
 					that.upimg = !that.upimg
-					that.upload_img(path,myUrl);
+					that.upload_img04(path,myUrl);
 				}, function(e) {
 					alert("取消选择图片");
 				}, {
 					filter: "image"
 				});
 			},
-			upload_img:function (p,myUrl) {
+			upload_img04:function (p,myUrl) {
 				
 				var thats = this
 				var img = new Image();
@@ -94,22 +94,6 @@
 						success: function(res) {
 							if(res.status == 200) {
 								$(thats).attr('src',url_url + res.data)
-								$.ajax({
-									type:"post",
-									url:url_url+"/merchant/updateSmAdvertisementPicture",
-									data:{
-										'type':$(thats).attr('myname').indexOf('首页')!=-1?1:2,
-										'id':$(thats).attr('myid'),
-										'picture':$(thats).attr('src')
-									},
-									async:true,
-									success:function(res){
-										mui.toast('修改成功') 
-									},
-									error:function(err){
-										console.log(err);
-									}
-								});
 							} else {
 								alert(res.msg)
 							}

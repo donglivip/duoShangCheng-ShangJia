@@ -100,6 +100,14 @@
 			$('#img_img_id').on('click', function() {
 				$(this).upload('/merchant/insertCommodityImage');
 			});
+			//判断是否交过保证金
+			if(localStorage.getItem('smMeEnsurePrice')==undefined||localStorage.getItem('smMeEnsurePrice')==null){
+				alert('您还未缴纳保证金，请先缴纳保证金，否则您的店铺将无法显示在用户端，用户无法查看到您的店铺')
+			}
+			//判断是否交过租金
+			if(localStorage.getItem('smMeMortgagePrice')==-1){
+				alert('您还未缴纳租金，请先缴纳租金，否则您的店铺将无法显示在用户端，用户无法查看到您的店铺')
+			}
 			var shopLogo = localStorage.getItem('smMeShopImg'); //店铺图片
 			$.ajax({
 				type: "post",

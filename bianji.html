@@ -249,19 +249,32 @@
 						<!-- 规格回显 -->
 						var gdata=JSON.parse(res.data.smCoFarmat)
 						Object.keys(gdata).forEach(function(key){
+							if(key.indexOf('-')!=-1){
+								var name=key.substr(0,key.indexOf('-'))
+								var img=key.substr(key.indexOf('-')+1,key.length)
+							}else{
+								var name=key
+								var img='img/add.png'
+							}
 							$('.specAdd').before(`
 								<div class="gui-box specWrap">
 									<div class="gui-tab">
 										<div class="gui-title">
 											名称
 										</div>
-										<input type="text" placeholder="请输入名称" value='${key}'/>
+										<input type="text" placeholder="请输入名称" value='${name}'/>
 									</div>
 									<div class="gui-tab">
 										<div class="gui-title">
 											单价
 										</div>
 										<input type="text" placeholder="请输入单价"  value='${gdata[key]}'/>
+									</div>
+									<div class="gui-tab">
+										<div class="gui-title">
+											规格图片
+										</div>
+										<img src="${img}" class="guigeimg"/>
 									</div>
 								</div>
 							`)

@@ -62,7 +62,7 @@
 				});
 			},
 			upload_img04:function (p,myUrl) {
-				
+				plus.nativeUI.showWaiting('上传中')
 				var thats = this
 				var img = new Image();
 				img.src = p; // 传过来的图片路径在这里用。
@@ -92,6 +92,7 @@
 							imgStr: canvas.toDataURL('image/jpeg', 1 || 0.8)
 						},
 						success: function(res) {
+							plus.nativeUI.closeWaiting()
 							if(res.status == 200) {
 								$(thats).attr('src',url_url + res.data)
 							} else {
@@ -99,6 +100,7 @@
 							}
 						},
 						error: function(res) {
+							plus.nativeUI.closeWaiting()
 							alert('网络连接失败，请检查网络后再试！')
 						}
 					})

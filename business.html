@@ -93,15 +93,15 @@
 					<div id="ShopType" class="main-news" style="padding-right: 0.24rem;">
 						<select name="TypeOne" id="TypeOne">
 							<option value="0">请选择</option>
-					
+
 						</select>
 						<select name="TypeTwo" id="TypeTwo">
 							<option value="0">请选择</option>
-					
+
 						</select>
 						<select name="Typethr" id="Typethr">
 							<option value="0">请选择</option>
-						
+
 						</select>
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 						</select>
 						<select name="TypeTwo" id="shicahng" style="display: none;">
 							<option value="0">请选择市场</option>
-					
+
 						</select>
 					</div>
 				</div>
@@ -147,8 +147,8 @@
 		<script src="js/upload.js"></script>
 		<script>
 			// 获取一级分类
-			let opHtml = '';
-			var smMeCommodityNum=0
+			var opHtml = '';
+			var smMeCommodityNum = 0
 			$.ajax({
 				type: "post",
 				url: url_url + '/user/selectSmShopTypeOne',
@@ -165,38 +165,21 @@
 					console.log(JSON.stringify(data));
 				}
 			});
-			<!-- 获取所有地区 -->
-			$.ajax({
-				type: "post",
-				url: url_url + '/user/selectSmAdvertisementAddress',
-				async: true,
-				dataType: "JSON",
-				success: function(res) {
-					for(var i = 0; i < res.data.length; i++) {
-						$('#addressName').append(`
-							<option value='${res.data[i].smAdvertisementAddressId}'>${res.data[i].smAaProvice}${res.data[i].smAaCity}${res.data[i].smAaArea}</option>
-						`)
-					}
-			
-				},
-				error: function(data) {
-					console.log(JSON.stringify(data));
-				}
-			});
+
 			<!-- 获取市场 -->
-			$('#addressName').change(function(){
-				var id=$(this).val()
-				if(id!=0){
+			$('#addressName').change(function() {
+				var id = $(this).val()
+				if(id != 0) {
 					$('#shicahng').show()
-				}else{
+				} else {
 					$('#shicahng').hide()
 				}
 				$.ajax({
 					type: "post",
 					url: url_url + '/user/selectSmAdvertisementMarket',
 					async: true,
-					data:{
-						smAdvertisementAddressId:id
+					data: {
+						smAdvertisementAddressId: id
 					},
 					dataType: "JSON",
 					success: function(res) {
@@ -206,7 +189,7 @@
 								<option value='${res.data[i].smAdvertisementMarketId}'>${res.data[i].smAmName}</option>
 							`)
 						}
-				
+
 					},
 					error: function(data) {
 						console.log(JSON.stringify(data));
@@ -238,34 +221,55 @@
 						console.log(JSON.stringify(data));
 					}
 				});
+
 			});
-			$('#TypeTwo').change(function(){
+			$('#TypeTwo').change(function() {
 				$('#Typethr').html('');
 				$('#Typethr').html('<option value="0" num=0>请选择</option>');
-					let optHtml = '';
-					let val = $('#TypeTwo').val();
-					$.ajax({
-						type: "post",
-						url: url_url + '/user/selectSmShopTypeTwo',
-						async: true,
-						dataType: "JSON",
-						data: {
-							'smStPpid': val
-						},
-						success: function(res) {
-							for(var i = 0; i < res.data.length; i++) {
-								optHtml += `<option value=${res.data[i].smShopTypeId} num='${res.data[i].smStNum}'>${res.data[i].smStName}</option>`;
-							};
-							$('#Typethr').append(optHtml);
-				
-						},
-						error: function(data) {
-							console.log(JSON.stringify(data));
+				let optHtml = '';
+				let val = $('#TypeTwo').val();
+				$.ajax({
+					type: "post",
+					url: url_url + '/user/selectSmShopTypeTwo',
+					async: true,
+					dataType: "JSON",
+					data: {
+						'smStPpid': val
+					},
+					success: function(res) {
+						for(var i = 0; i < res.data.length; i++) {
+							optHtml += `<option value=${res.data[i].smShopTypeId} num='${res.data[i].smStNum}'>${res.data[i].smStName}</option>`;
+						};
+						$('#Typethr').append(optHtml);
+
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+					}
+				});
+				$.ajax({
+					type: "post",
+					url: url_url + '/user/selectSmAdvertisementAddress',
+					async: true,
+					dataType: "JSON",
+					data: {
+						id: $('#TypeTwo').val()
+					},
+					success: function(res) {
+						for(var i = 0; i < res.data.length; i++) {
+							$('#addressName').append(`
+								<option value='${res.data[i].smAdvertisementAddressId}'>${res.data[i].smAaProvice}${res.data[i].smAaCity}${res.data[i].smAaArea}</option>
+							`)
 						}
-					});
+
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+					}
+				});
 			})
-			$('#Typethr').change(function(){
-				smMeCommodityNum=$("#Typethr option:selected").attr('num')
+			$('#Typethr').change(function() {
+				smMeCommodityNum = $("#Typethr option:selected").attr('num')
 				$('#mynum').html(smMeCommodityNum)
 			})
 			$(function() {
@@ -284,15 +288,15 @@
 
 				//提交表单  注册验证
 				$('#submit').click(function() {
-					
+
 					let smShopTypeId = $('#Typethr').val();
 					let smMeShopName = $('#shopName').val();
 					let smMeLegalPerson = $('#userName').val();
 					let smMeLegalPhone = $('#phone').val();
 					let smMePassword = $('#pwd').val();
 					let smMeCardNo = $('#idCardNum').val();
-					let smMeAddress = $('#addressName').val();//地区
-					let shichang = $('#shicahng').val();//地区
+					let smMeAddress = $('#addressName').val(); //地区
+					let shichang = $('#shicahng').val(); //地区
 					let smMeCardFrontImg = $('#idCard').attr('src');
 					let smMeCardBackImg = $('#idCardBack').attr('src');
 					let smMeShopImg = $('#shopLogo').attr('src');
@@ -360,7 +364,7 @@
 						alert('请输入地址')
 						return false
 					}
-					if(shicahng == ''||shicahng==0) {
+					if(shicahng == '' || shicahng == 0) {
 						alert('请输入市场')
 						return false
 					}
@@ -380,8 +384,7 @@
 						alert('请上传营业执照')
 						return false
 					}
-					
-					
+
 					$.ajax({
 						type: "post",
 						url: url_url + "/merchant/insertMerchant",
@@ -392,17 +395,17 @@
 							'smMeLegalPerson': smMeLegalPerson,
 							'smMeLegalPhone': smMeLegalPhone,
 							'smMePassword': smMePassword,
-							smMeQq:smMeQq,
+							smMeQq: smMeQq,
 							'smMeCardNo': smMeCardNo,
 							'smMeAddress': smMeAddress,
 							'smMeCardFrontImg': smMeCardFrontImg,
 							'smMeCardBackImg': smMeCardBackImg,
 							'smMeShopImg': smMeShopImg,
 							'smMeBusinessLicenesImg': smMeBusinessLicenesImg,
-							'smMeCommodityNum':smMeCommodityNum,
-							smAdvertisementAddressId:smMeAddress,
-							smAdvertisementMarketId:shichang
-							
+							'smMeCommodityNum': smMeCommodityNum,
+							smAdvertisementAddressId: smMeAddress,
+							smAdvertisementMarketId: shichang
+
 						},
 						success: function(res) {
 							if(res.status == 200) {
